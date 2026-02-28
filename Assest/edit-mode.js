@@ -11,7 +11,7 @@
         GITHUB_REPO: '42778312/GlanzFaktor', // Update if needed
         GITHUB_BRANCH: 'main',
         API_BASE: '/api/github-proxy', // Vercel serverless function
-        EDIT_MODE_PARAM: 'edit',
+        EDIT_MODE_PARAM: 'editmode',
         STORAGE_KEY: 'glanzfaktor_edit_mode'
     };
 
@@ -23,10 +23,9 @@
     // Initialize
     function init() {
         // Check if edit mode should be activated
-        const urlParams = new URLSearchParams(window.location.search);
-        const editParam = urlParams.get(CONFIG.EDIT_MODE_PARAM);
+        const pathname = window.location.pathname;
         
-        if (editParam === 'true') {
+        if (pathname === '/edit' || pathname === '/edit/') {
             showPasswordPrompt();
         }
 

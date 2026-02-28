@@ -3,6 +3,10 @@
     {
       "source": "/",
       "destination": "/home.html"
+    },
+    {
+      "source": "/edit",
+      "destination": "/home.html"
     }
   ]
 }
