@@ -37,6 +37,17 @@
         .w-webflow-badge {
             display: none !important;
         }
+        
+        /* Hide Webflow editor button */
+        .w-editor-bem-EditorStartButton_Shape,
+        .w-editor-bem-EditorStartButton,
+        .w-editor-bem-EditorOverlay,
+        [class*="w-editor-bem-Editor"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
     </style>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
