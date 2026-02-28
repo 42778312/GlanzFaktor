@@ -9,7 +9,7 @@
    - Automatisches Deployment
 
 2. **Aktivierung über URL Parameter**
-   - Besuchen Sie: `https://glanzfaktor-konzept.vercel.app/?edit=true`
+   - Besuchen Sie: `https://glanzfaktor-konzept.vercel.app/edit`
 
 3. **Dokumentation** (`EDIT-MODE-README.md`)
    - Vollständige Anleitung
@@ -33,7 +33,7 @@ Siehe **VERCEL-ENV-SETUP.md** für detaillierte Anleitung!
 ### 2. Edit Mode aktivieren:
 
 ```
-1. Öffne: https://glanzfaktor-konzept.vercel.app/?edit=true
+1. Öffne: https://glanzfaktor-konzept.vercel.app/edit
 2. Passwort: glanzfaktor2026 (oder dein eigenes)
 3. Klicke: "Anmelden"
 ```
@@ -87,7 +87,7 @@ Siehe **VERCEL-ENV-SETUP.md** → Abschnitt "Passwort ändern"
 
 ```bash
 # 1. Edit Mode öffnen
-https://glanzfaktor-konzept.vercel.app/?edit=true
+https://glanzfaktor-konzept.vercel.app/edit
 
 # 2. Anmelden (nur Passwort!)
 Passwort: glanzfaktor2026

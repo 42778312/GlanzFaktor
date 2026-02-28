@@ -24,8 +24,10 @@
     function init() {
         // Check if edit mode should be activated
         const pathname = window.location.pathname;
+        console.log('Edit Mode Init - Current pathname:', pathname);
         
         if (pathname === '/edit' || pathname === '/edit/') {
+            console.log('Edit mode triggered!');
             showPasswordPrompt();
         }
 

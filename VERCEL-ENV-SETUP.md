@@ -76,7 +76,7 @@ vercel --prod
 ## ✅ Schritt 3: Testen
 
 1. Warten Sie bis Vercel fertig deployed hat (1-2 Minuten)
-2. Öffnen Sie: `https://glanzfaktor-konzept.vercel.app/?edit=true`
+2. Öffnen Sie: `https://glanzfaktor-konzept.vercel.app/edit`
 3. Geben Sie NUR das Passwort ein (kein Token mehr nötig!)
 4. Klicken Sie "Anmelden"
 5. ✨ Edit Mode sollte jetzt aktiviert sein!
@@ -150,7 +150,7 @@ vercel --prod
 - [ ] `GITHUB_TOKEN` in Vercel gesetzt (Production, Preview, Development)
 - [ ] `EDIT_PASSWORD` in Vercel gesetzt (Production, Preview, Development)
 - [ ] Vercel neu deployed
-- [ ] Edit Mode getestet mit `?edit=true`
+- [ ] Edit Mode getestet mit `/edit`
 - [ ] Erfolgreich mit Passwort angemeldet
 - [ ] Testbild geändert und gespeichert
 
@@ -162,7 +162,7 @@ Jetzt können Sie Bilder bearbeiten **ohne Token eingeben zu müssen**!
 
 Öffnen Sie einfach:
 ```
-https://glanzfaktor-konzept.vercel.app/?edit=true
+https://glanzfaktor-konzept.vercel.app/edit
 ```
 
 Geben Sie Ihr Passwort ein und los geht's! 🚀

@@ -8,10 +8,10 @@ Diese Funktion ermöglicht es, Bilder auf der Website direkt zu bearbeiten, **oh
 
 ### Schritt 1: Edit Mode öffnen
 
-Besuchen Sie die Website mit dem `?edit=true` Parameter:
+Besuchen Sie die Website unter der `/edit` Route:
 
 ```
-https://glanzfaktor-konzept.vercel.app/?edit=true
+https://glanzfaktor-konzept.vercel.app/edit
 ```
 
 ### Schritt 2: Anmelden
