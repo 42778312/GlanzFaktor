@@ -1,0 +1,194 @@
+/* GlanzFaktor Custom Styles - Improved Spacing and Layout */
+
+/* Section Padding Adjustments */
+.section-regular {
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
+}
+
+.home-banner-section {
+    padding-top: 40px !important;
+    padding-bottom: 80px !important;
+}
+
+.home-card-section {
+    padding-top: 0px !important;
+    margin-top: -60px !important;
+}
+
+.marquee-section {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
+.portfolio-spacer {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+/* Hero Image Improvements */
+.home-banner-image-wrap {
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.home-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: center;
+}
+
+/* Container Spacing */
+.mg-top-80 {
+    margin-top: 80px !important;
+}
+
+.mg-top-60 {
+    margin-top: 60px !important;
+}
+
+.mg-top-30 {
+    margin-top: 30px !important;
+}
+
+/* Expert Cards Spacing */
+.expert-card-wrap {
+    gap: 30px;
+}
+
+.expert-card {
+    padding: 40px 30px !important;
+}
+
+/* Service Cards Spacing */
+.home-service-card {
+    padding: 35px !important;
+}
+
+/* Testimonial Section */
+.testimonial-slider-wrap {
+    padding-top: 40px;
+}
+
+/* FAQ Section Improvements */
+.faq-area {
+    margin-top: 60px !important;
+}
+
+.faq-wrap {
+    margin-bottom: 20px !important;
+    padding: 25px !important;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.faq-wrap:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Quote Form Spacing */
+.quote-form-wrap {
+    padding: 60px 50px !important;
+}
+
+/* Footer Improvements */
+.footer-section {
+    padding-top: 100px !important;
+}
+
+.footer-cta-wrap {
+    padding: 60px 50px !important;
+    margin-bottom: 80px !important;
+}
+
+/* How it Works Cards */
+.how-it-works-card {
+    padding: 40px 35px !important;
+    min-height: 280px;
+}
+
+/* Banner Cards */
+.home-banner-card {
+    padding: 30px !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+    .section-regular {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .home-banner-section {
+        padding-top: 30px !important;
+        padding-bottom: 50px !important;
+    }
+    
+    .quote-form-wrap,
+    .footer-cta-wrap {
+        padding: 40px 30px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-regular {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .mg-top-80 {
+        margin-top: 50px !important;
+    }
+    
+    .expert-card,
+    .home-service-card {
+        padding: 25px !important;
+    }
+}
+
+/* Text Enhancements */
+.banner-title {
+    line-height: 1.2 !important;
+    margin-bottom: 0 !important;
+}
+
+.section-title {
+    line-height: 1.3 !important;
+}
+
+.banner-card-text {
+    line-height: 1.6 !important;
+}
+
+/* Button Enhancements */
+.primary-button,
+.secondary-button {
+    transition: all 0.3s ease !important;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Portfolio Card Spacing */
+.portfolio-card {
+    margin-bottom: 40px;
+}
+
+.home-project-card-content-wrap {
+    padding-top: 25px !important;
+}
+
+/* Counter Section */
+.counter-wrap {
+    padding: 60px 0 !important;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}

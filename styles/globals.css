@@ -1,0 +1,210 @@
+/* Global reset / base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide Webflow badge & editor elements */
+.w-webflow-badge,
+.w-editor-bem-EditorStartButton_Shape,
+.w-editor-bem-EditorStartButton,
+.w-editor-bem-EditorOverlay,
+[class*="w-editor-bem-Editor"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ---- Marquee ---- */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-inner {
+  display: flex;
+  white-space: nowrap;
+  animation: marqueeScroll 18s linear infinite;
+}
+
+.marquee-inner:hover {
+  animation-play-state: paused;
+}
+
+/* ---- Testimonial slider ---- */
+.testimonial-slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-slides {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.testimonial-slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+/* ---- FAQ accordion ---- */
+.faq-answer-wrap {
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer-wrap.open {
+  display: block;
+}
+
+.faq-icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.faq-vertical-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: transform 0.3s ease;
+}
+
+.faq-horizontal-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.faq-wrap.open .faq-vertical-line {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-question-wrap {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ---- Mobile nav ---- */
+.nav-menu.open {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ---- Edit mode animations ---- */
+@keyframes slideUp {
+  from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateX(-50%) translateY(0);    opacity: 1; }
+  to   { transform: translateX(-50%) translateY(100px); opacity: 0; }
+}
+
+/* ---- Counter animation ---- */
+@keyframes countUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0);    }
+}
+
+/* ---- Fade-in utility ---- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* ---- Editable image wrapper (edit mode) ---- */
+.editable-image-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.edit-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(247, 147, 30, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.editable-image-wrapper:hover .edit-overlay {
+  opacity: 1;
+}
+
+/* ---- Service cards hover ---- */
+.home-service-card {
+  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.32s ease;
+  cursor: default;
+}
+
+.home-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+}
+
+.home-service-card:hover .home-service-icon-wrap {
+  transform: scale(1.12);
+  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.home-service-icon-wrap {
+  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.home-service-card:hover .card-title {
+  color: #5b3ee8;
+  transition: color 0.25s ease;
+}
+
+.card-title {
+  transition: color 0.25s ease;
+}
