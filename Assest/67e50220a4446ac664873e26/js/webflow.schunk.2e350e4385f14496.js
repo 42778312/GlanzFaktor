@@ -1,3 +1,4 @@
+// @ts-nocheck
 (self.webpackChunk = self.webpackChunk || []).push([
     ["923"], {
         9904: function() {
@@ -930,17 +931,6 @@
                 function r() {
                     var a = i.fullScreen || i.mozFullScreen || i.webkitIsFullScreen || i.msFullscreenElement || !!i.webkitFullscreenElement;
                     e(t).attr("style", a ? "display: none !important;" : "")
-                }
-
-                function f() {
-                    var e = d.children(".w-webflow-badge"),
-                        a = e.length && e.get(0) === t,
-                        i = n.env("editor");
-                    if (a) {
-                        i && e.remove();
-                        return
-                    }
-                    e.length && e.remove(), i || d.append(t)
                 }
                 return a.ready = function() {
                     var a, n, d, u = o.attr("data-wf-status"),
@@ -3456,7 +3446,7 @@
                                                         {
                                                             actionTypeId: r
                                                         } = l,
-                                                        f = (r === p.ActionTypeConsts.PLUGIN_RIVE ? 0 === (l.config ? .target ? .selectorGuids || []).length : j(r)) ? z(r) ? .(t, l) : null,
+                                                        f = (r === p.ActionTypeConsts.PLUGIN_RIVE ? 0 === (l.config?.target?.selectorGuids || []).length : j(r)) ? z(r)?.(t, l) : null,
                                                         u = C({
                                                             element: t,
                                                             actionItem: l,
