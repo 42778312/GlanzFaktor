@@ -10,14 +10,14 @@
     const CONFIG = {
         GITHUB_REPO: '42778312/GlanzFaktor', // Update if needed
         GITHUB_BRANCH: 'main',
-        PASSWORD: 'glanzfaktor2026', // Change this to your secure password
+        API_BASE: '/api/github-proxy', // Vercel serverless function
         EDIT_MODE_PARAM: 'edit',
         STORAGE_KEY: 'glanzfaktor_edit_mode'
     };
 
     // State
     let isEditMode = false;
-    let githubToken = null;
+    let userPassword = null;
     let pendingChanges = [];
 
     // Initialize
@@ -31,9 +31,9 @@
         }
 
         // Check if already authenticated
-        const savedToken = sessionStorage.getItem('gh_token');
-        if (savedToken && checkEditModeActive()) {
-            githubToken = savedToken;
+        const savedPassword = sessionStorage.getItem('edit_password');
+        if (savedPassword && checkEditModeActive()) {
+            userPassword = savedPassword;
             activateEditMode();
         }
     }
@@ -73,6 +73,10 @@
                     margin: 0 0 20px 0;
                     color: #333;
                 }
+                .edit-mode-dialog p {
+                    color: #666;
+                    margin-bottom: 20px;
+                }
                 .edit-mode-dialog input {
                     width: 100%;
                     padding: 12px;
@@ -103,36 +107,22 @@
                 .edit-mode-dialog .btn-primary:hover {
                     background: #e08315;
                 }
-                .edit-mode-dialog small {
-                    display: block;
-                    margin-top: 15px;
-                    color: #666;
-                    line-height: 1.5;
-                }
-                .edit-mode-dialog a {
-                    color: #F7931E;
-                    text-decoration: none;
-                }
                 .error-message {
                     color: #d32f2f;
                     margin: 10px 0;
                     display: none;
+                    padding: 10px;
+                    background: #ffebee;
+                    border-radius: 6px;
                 }
             </style>
             <div class="edit-mode-dialog">
                 <h2>🔒 Edit Mode Aktivieren</h2>
-                <p>Geben Sie das Passwort und Ihren GitHub Personal Access Token ein:</p>
-                <input type="password" id="edit-password" placeholder="Passwort" />
-                <input type="password" id="github-token" placeholder="GitHub Personal Access Token" />
+                <p>Geben Sie das Passwort ein um Bilder zu bearbeiten:</p>
+                <input type="password" id="edit-password" placeholder="Passwort eingeben" />
                 <div class="error-message" id="error-message"></div>
                 <button class="btn-primary" onclick="window.editMode.authenticate()">Anmelden</button>
                 <button class="btn-secondary" onclick="window.editMode.closeDialog()">Abbrechen</button>
-                <small>
-                    <strong>GitHub Token erstellen:</strong><br>
-                    1. Gehe zu <a href="https://github.com/settings/tokens/new" target="_blank">GitHub Settings → Tokens</a><br>
-                    2. Erstelle ein Token mit "repo" Berechtigung<br>
-                    3. Kopiere das Token hierher
-                </small>
             </div>
         `;
         document.body.appendChild(overlay);
@@ -143,61 +133,68 @@
         }, 100);
 
         // Handle Enter key
-        ['edit-password', 'github-token'].forEach(id => {
-            document.getElementById(id).addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    authenticate();
-                }
-            });
-        });
-    }
-
-    // Authenticate user
-    function authenticate() {
-        const password = document.getElementById('edit-password').value;
-        const token = document.getElementById('github-token').value;
-        const errorEl = document.getElementById('error-message');
-
-        if (password !== CONFIG.PASSWORD) {
-            errorEl.textContent = 'Falsches Passwort!';
-            errorEl.style.display = 'block';
-            return;
-        }
-
-        if (!token || token.length < 20) {
-            errorEl.textContent = 'Bitte geben Sie einen gültigen GitHub Token ein!';
-            errorEl.style.display = 'block';
-            return;
-        }
-
-        // Verify token works
-        verifyGitHubToken(token).then(valid => {
-            if (valid) {
-                githubToken = token;
-                sessionStorage.setItem('gh_token', token);
-                sessionStorage.setItem(CONFIG.STORAGE_KEY, 'true');
-                closeDialog();
-                activateEditMode();
-            } else {
-                errorEl.textContent = 'GitHub Token ist ungültig oder hat keine Berechtigung!';
-                errorEl.style.display = 'block';
+        document.getElementById('edit-password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                authenticate();
             }
         });
     }
 
-    // Verify GitHub token
-    async function verifyGitHubToken(token) {
+    // Authenticate user
+    async function authenticate() {
+        const password = document.getElementById('edit-password').value;
+        const errorEl = document.getElementById('error-message');
+
+        if (!password) {
+            errorEl.textContent = 'Bitte Passwort eingeben!';
+            errorEl.style.display = 'block';
+            return;
+        }
+
+        // Show loading
+        errorEl.textContent = 'Überprüfe Passwort...';
+        errorEl.style.display = 'block';
+        errorEl.style.background = '#e3f2fd';
+        errorEl.style.color = '#1976d2';
+
+        // Verify password by testing API
         try {
-            const response = await fetch(`https://api.github.com/repos/${CONFIG.GITHUB_REPO}`, {
+            const response = await fetch(`${CONFIG.API_BASE}?path=repos/${CONFIG.GITHUB_REPO}`, {
                 headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json'
+                    'X-Password': password
                 }
             });
-            return response.ok;
+
+            if (response.ok) {
+                userPassword = password;
+                sessionStorage.setItem('edit_password', password);
+                sessionStorage.setItem(CONFIG.STORAGE_KEY, 'true');
+                closeDialog();
+                activateEditMode();
+            } else if (response.status === 401) {
+                errorEl.textContent = 'Falsches Passwort!';
+                errorEl.style.display = 'block';
+                errorEl.style.background = '#ffebee';
+                errorEl.style.color = '#d32f2f';
+            } else {
+                errorEl.textContent = 'Fehler beim Anmelden. Bitte versuchen Sie es erneut.';
+                errorEl.style.display = 'block';
+                errorEl.style.background = '#ffebee';
+                errorEl.style.color = '#d32f2f';
+            }
         } catch (error) {
-            console.error('Token verification failed:', error);
-            return false;
+            console.error('Authentication error:', error);
+            errorEl.textContent = 'Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.';
+            errorEl.style.display = 'block';
+            errorEl.style.background = '#ffebee';
+            errorEl.style.color = '#d32f2f';
+        }
+    }
+
+    // Verify GitHub token (removed - now handled by server)
+    async function verifyGitHubToken(token) {
+        // This function is no longer needed but kept for compatibility
+        return true;
         }
     }
 
@@ -554,14 +551,13 @@
         }
     }
 
-    // GitHub API functions
+    // GitHub API functions (via proxy)
     async function getFileFromGitHub(path) {
         const response = await fetch(
-            `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/${path}?ref=${CONFIG.GITHUB_BRANCH}`,
+            `${CONFIG.API_BASE}?path=repos/${CONFIG.GITHUB_REPO}/contents/${path}&ref=${CONFIG.GITHUB_BRANCH}`,
             {
                 headers: {
-                    'Authorization': `token ${githubToken}`,
-                    'Accept': 'application/vnd.github.v3+json'
+                    'X-Password': userPassword
                 }
             }
         );
@@ -578,12 +574,11 @@
         const base64Data = imageData.split(',')[1];
         
         const response = await fetch(
-            `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
+            `${CONFIG.API_BASE}?path=repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
             {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token ${githubToken}`,
-                    'Accept': 'application/vnd.github.v3+json',
+                    'X-Password': userPassword,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -605,12 +600,11 @@
         const base64Content = btoa(unescape(encodeURIComponent(content)));
         
         const response = await fetch(
-            `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
+            `${CONFIG.API_BASE}?path=repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
             {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `token ${githubToken}`,
-                    'Accept': 'application/vnd.github.v3+json',
+                    'X-Password': userPassword,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -635,12 +629,11 @@
             const fileData = await getFileFromGitHub(path);
             
             const response = await fetch(
-                `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
+                `${CONFIG.API_BASE}?path=repos/${CONFIG.GITHUB_REPO}/contents/${path}`,
                 {
                     method: 'DELETE',
                     headers: {
-                        'Authorization': `token ${githubToken}`,
-                        'Accept': 'application/vnd.github.v3+json',
+                        'X-Password': userPassword,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
@@ -701,7 +694,7 @@
         }
         
         sessionStorage.removeItem(CONFIG.STORAGE_KEY);
-        sessionStorage.removeItem('gh_token');
+        sessionStorage.removeItem('edit_password');
         window.location.href = window.location.pathname;
     }
 
