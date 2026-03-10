@@ -1,34 +1,32 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+
+emailjs.init({
+  publicKey: 'JxvaKXQZMNtQpjs7R',
+});
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    Phone: '',
-    Service: '',
-    'Date-select': '',
-    'Total-area-sqft': '',
-    Message: '',
-  });
+  const form = useRef();
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
+  const [sending, setSending] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      // Build a mailto link or send via a serverless endpoint
-      // For now, open a mailto link with the form data
-      const subject = encodeURIComponent('Reinigungsanfrage – GlanzFaktor');
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nTelefon: ${formData.Phone}\nLeistung: ${formData.Service}\nDatum: ${formData['Date-select']}\nFläche: ${formData['Total-area-sqft']} qm\nNachricht: ${formData.Message}`
-      );
-      window.location.href = `mailto:info@glanzfaktor-bodensee.de?subject=${subject}&body=${body}`;
-      setStatus('success');
-    } catch {
-      setStatus('error');
-    }
+    setSending(true);
+
+    emailjs
+      .sendForm('service_cizdhdn', 'template_qw4dbkc', form.current)
+      .then(
+        () => {
+          setStatus('success');
+          form.current.reset();
+        },
+        (error) => {
+          console.error('EmailJS error:', error.text);
+          setStatus('error');
+        }
+      )
+      .finally(() => setSending(false));
   };
 
   return (
@@ -53,7 +51,7 @@ export default function ContactForm() {
                   <div>Danke! Ihre Einsendung wurde erhalten!</div>
                 </div>
               ) : (
-                <form id="Quote-Form" onSubmit={handleSubmit} className="quote-form">
+                <form id="Quote-Form" ref={form} onSubmit={handleSubmit} className="quote-form">
                   <div className="w-layout-vflex quote-form-title-wrap">
                     <div className="subtitle white">
                       <div className="subtitle-icon">
@@ -77,64 +75,20 @@ export default function ContactForm() {
                           name="name"
                           placeholder="Ihr Name"
                           type="text"
-                          value={formData.name}
-                          onChange={handleChange}
+                          required
                         />
                       </div>
+                    </div>
+
+                    <div className="quote-input-area">
                       <div className="quote-input-wrap">
                         <input
                           className="quote-input-field w-input"
                           maxLength="256"
-                          name="Phone"
+                          name="telefon"
                           placeholder="Telefonnummer"
                           type="tel"
                           required
-                          value={formData.Phone}
-                          onChange={handleChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="quote-input-area">
-                      <div className="quote-input-wrap">
-                        <select
-                          name="Service"
-                          className="quote-input-field w-select"
-                          value={formData.Service}
-                          onChange={handleChange}
-                        >
-                          <option value="">Wählen Sie eine Leistung</option>
-                          <option value="Home Cleaning">Hausreinigung</option>
-                          <option value="Kitchen Cleaning">Küchenreinigung</option>
-                          <option value="Toilet Sanitization">Toilettendesinfektion</option>
-                        </select>
-                      </div>
-                      <div className="quote-input-wrap">
-                        <select
-                          name="Date-select"
-                          className="quote-input-field w-select"
-                          value={formData['Date-select']}
-                          onChange={handleChange}
-                        >
-                          <option value="">Wählen Sie ein Datum</option>
-                          <option value="1 Week Later">1 Woche später</option>
-                          <option value="1-2 Week Later">1-2 Wochen später</option>
-                          <option value="2 Week Later">2 Wochen später</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="quote-input-area">
-                      <div className="quote-input-wrap">
-                        <input
-                          className="quote-input-field w-input"
-                          maxLength="256"
-                          name="Total-area-sqft"
-                          placeholder="Gesamtfläche (qm)"
-                          type="text"
-                          required
-                          value={formData['Total-area-sqft']}
-                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -144,10 +98,9 @@ export default function ContactForm() {
                         <textarea
                           placeholder="Schreiben Sie Ihre Nachricht hier..."
                           maxLength="5000"
-                          name="Message"
+                          name="message"
+                          required
                           className="quote-input-field message w-input"
-                          value={formData.Message}
-                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -156,7 +109,8 @@ export default function ContactForm() {
                   <input
                     type="submit"
                     className="primary-button w-button"
-                    value="Jetzt kontaktieren"
+                    value={sending ? 'Wird gesendet...' : 'Jetzt kontaktieren'}
+                    disabled={sending}
                   />
 
                   {status === 'error' && (
