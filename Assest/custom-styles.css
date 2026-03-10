@@ -12,8 +12,100 @@
 }
 
 .home-card-section {
-    padding-top: 0px !important;
-    margin-top: -60px !important;
+    display: none;
+}
+
+/* ── How It Works – modern redesign ──────────────────── */
+.hiw-section {
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+/* Title block */
+.hiw-title-block {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+/* Steps grid */
+.hiw-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Base card */
+.hiw-step-card {
+    background: #f5f6f8;
+    border-radius: 20px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hiw-step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+}
+
+/* Step number */
+.hiw-step-num {
+    font-size: 48px;
+    font-weight: 700;
+    color: #e0e3ea;
+    line-height: 1;
+    margin-bottom: 28px;
+    display: block;
+    font-family: var(--_typography---font-family--title, sans-serif);
+}
+
+/* Step title & text */
+.hiw-step-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    line-height: 1.3;
+    font-family: var(--_typography---font-family--title, sans-serif);
+}
+.hiw-step-text {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA dark card */
+.hiw-cta-card {
+    background: #2d3142;
+    color: #fff;
+}
+.hiw-cta-card .hiw-step-title {
+    color: #fff;
+}
+
+/* ── Enter animations ─────────────────────────────────── */
+.hiw-animate {
+    opacity: 0;
+    transform: translateY(32px);
+    transition:
+        opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hiw-animate.hiw-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hiw-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 479px) {
+    .hiw-steps { grid-template-columns: 1fr; }
+    .hiw-section { padding: 56px 0; }
 }
 
 .marquee-section {

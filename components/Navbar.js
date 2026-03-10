@@ -25,7 +25,7 @@ export default function Navbar() {
           <a href="/" className="nav-logo-wrap w-nav-brand">
             <img
               style={{ maxHeight: '90px', width: 'auto', objectFit: 'contain' }}
-              src="/Assest/67e50a358346fffe93936f4d_4d0f90ae8a351a80fa3f20bb5cb6b749_nav-logo.png"
+              src="/Assest/log.png"
               loading="lazy"
               alt="GlanzFaktor Logo"
             />
