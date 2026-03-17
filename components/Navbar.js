@@ -1,93 +1,109 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const NAV_LINKS = [
+  ['#home',         'Startseite'],
+  ['#portfolio',    'Portfolio'],
+  ['#why-us',       'Warum GlanzFaktor'],
+  ['#contact-form', 'Kontakt'],
+];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const scrollTo = (e, id) => {
     e.preventDefault();
     const el = document.querySelector(id);
-    if (el) {
-      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-    }
+    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
     setMenuOpen(false);
   };
 
   return (
-    <div
-      data-animation="default"
-      data-collapse="medium"
-      data-duration="400"
-      role="banner"
-      className="navbar w-nav"
-    >
-      <div className="nav-container w-container">
-        <div className="nav-area">
-          <a href="/" className="nav-logo-wrap w-nav-brand">
-            <img
-              style={{ maxHeight: '90px', width: 'auto', objectFit: 'contain' }}
-              src="/Assest/log.png"
-              loading="lazy"
-              alt="GlanzFaktor Logo"
-            />
-          </a>
+    <>
+      <div
+        role="banner"
+        className={`navbar w-nav${scrolled ? ' nav-scrolled' : ''}`}
+      >
+        <div className="nav-container w-container">
+          <div className="nav-area">
+            <a href="/" className="nav-logo-wrap w-nav-brand">
+              <img
+                style={{ maxHeight: '130px', width: 'auto', objectFit: 'contain' }}
+                src="/Assest/log.png"
+                loading="lazy"
+                alt="GlanzFaktor Logo"
+              />
+            </a>
 
-          <nav
-            role="navigation"
-            className={`nav-menu w-nav-menu${menuOpen ? ' open' : ''}`}
-          >
-            <div>
-              <a href="#home" onClick={(e) => scrollTo(e, '#home')} className="nav-link w-nav-link">
-                Startseite
-              </a>
-              <a href="#portfolio" onClick={(e) => scrollTo(e, '#portfolio')} className="nav-link w-nav-link">
-                Portfolio
-              </a>
-              <a href="#why-us" onClick={(e) => scrollTo(e, '#why-us')} className="nav-link w-nav-link">
-                Warum GlanzFaktor
-              </a>
-              <a href="#contact-form" onClick={(e) => scrollTo(e, '#contact-form')} className="nav-link w-nav-link">
-                Kontakt
-              </a>
-            </div>
-            <div className="nav-button-wrap">
-              <a href="tel:+491766167596" className="nav-contact-link w-inline-block">
-                <div className="nav-contact-icon">
-                  <img
-                    src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50e8e67a49a6ede574849_phone-icon.svg"
-                    loading="lazy"
-                    alt="phone"
-                  />
-                </div>
-                <div>(0176) 616 77596</div>
-              </a>
-              <div className="nav-button-line"></div>
-              <a
-                href="#contact-form"
-                onClick={(e) => scrollTo(e, '#contact-form')}
-                className="secondary-button w-inline-block"
-              >
-                <div>Termin</div>
-                <div className="button-icon">
-                  <img
-                    src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"
-                    loading="lazy"
-                    alt="arrow"
-                  />
-                </div>
-              </a>
-            </div>
-          </nav>
+            {/* Desktop nav */}
+            <nav role="navigation" className="nav-menu w-nav-menu">
+              <div>
+                {NAV_LINKS.map(([id, label]) => (
+                  <a key={id} href={id} onClick={(e) => scrollTo(e, id)} className="nav-link w-nav-link">
+                    {label}
+                  </a>
+                ))}
+              </div>
+              <div className="nav-button-wrap">
+                <a href="tel:+491766167596" className="nav-contact-link w-inline-block">
+                  <div className="nav-contact-icon">
+                    <img
+                      src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50e8e67a49a6ede574849_phone-icon.svg"
+                      loading="lazy" alt="phone"
+                    />
+                  </div>
+                  <div>(0176) 616 77596</div>
+                </a>
+                <div className="nav-button-line" />
+                <a
+                  href="#contact-form"
+                  onClick={(e) => scrollTo(e, '#contact-form')}
+                  className="secondary-button w-inline-block"
+                >
+                  <div>Termin</div>
+                  <div className="button-icon">
+                    <img
+                      src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"
+                      loading="lazy" alt="arrow"
+                    />
+                  </div>
+                </a>
+              </div>
+            </nav>
 
-          <div
-            className="menu-button w-nav-button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            role="button"
-            aria-label="Toggle menu"
-          >
-            <div className="w-icon-nav-menu"></div>
+            {/* Animated hamburger */}
+            <button
+              className={`gf-hamburger${menuOpen ? ' open' : ''}`}
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Menü öffnen"
+              aria-expanded={menuOpen}
+            >
+              <span /><span /><span />
+            </button>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile slide-down menu — outside sticky navbar flow */}
+      <div className={`gf-mobile-nav${menuOpen ? ' open' : ''}`}>
+        <div className="gf-mobile-nav-inner">
+          {NAV_LINKS.map(([id, label]) => (
+            <a key={id} href={id} onClick={(e) => scrollTo(e, id)} className="gf-mobile-link">
+              {label}
+            </a>
+          ))}
+          <a href="tel:+491766167596" className="gf-mobile-link" style={{ fontWeight: 600 }}>
+            📞 (0176) 616 77596
+          </a>
+        </div>
+      </div>
+    </>
   );
 }

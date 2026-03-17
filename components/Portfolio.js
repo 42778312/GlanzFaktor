@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import useScrollReveal from './useScrollReveal';
+
 const portfolioItems = [
   {
     image: 'https://cdn.prod.website-files.com/67ed0cb918a16dfcec7cea30/68b6992d41510a89fa3e9e9f_portfolio-img-2.jpg',
@@ -12,18 +15,21 @@ const portfolioItems = [
 ];
 
 export default function Portfolio() {
+  const sectionRef = useRef(null);
+  useScrollReveal(sectionRef);
+
   return (
-    <section id="portfolio" className="section-regular">
+    <section id="portfolio" className="section-regular" ref={sectionRef}>
       <div className="w-layout-blockcontainer container w-container">
+
         <div className="section-title-wrap">
           <div className="transform-section-title-area">
-            <div className="w-layout-vflex recent-blog-wrap">
+            <div className="w-layout-vflex recent-blog-wrap reveal reveal-fade">
               <div className="subtitle">
                 <div className="subtitle-icon">
                   <img
                     src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68ada4d8c8e2e861698ff365_subtitle-star.svg"
-                    loading="lazy"
-                    alt="star"
+                    loading="lazy" alt="star"
                   />
                 </div>
                 <div>Portfolio</div>
@@ -39,13 +45,18 @@ export default function Portfolio() {
           <div className="w-dyn-list">
             <div role="list" className="w-dyn-items w-row">
               {portfolioItems.map((item, i) => (
-                <div key={i} role="listitem" className="portfolio-collection-item w-dyn-item w-col w-col-6">
+                <div
+                  key={i}
+                  role="listitem"
+                  className="portfolio-collection-item w-dyn-item w-col w-col-6 reveal reveal-scale"
+                  style={{ '--d': `${i * 0.18}s` }}
+                >
                   <div className="portfolio-card">
                     <div className="portfolio-image-wrap">
                       <div className="portfolio-image-area">
                         <img
                           loading="eager"
-                          alt="Portfolio Image"
+                          alt={item.title}
                           src={item.image}
                           className="home-project-card-image"
                         />
@@ -62,6 +73,7 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

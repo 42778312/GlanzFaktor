@@ -25,6 +25,9 @@ export default function Document() {
           type="text/css"
         />
 
+        {/* Custom overrides */}
+        <link href="/Assest/custom-styles.css" rel="stylesheet" type="text/css" />
+
         {/* Google Fonts */}
         <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />

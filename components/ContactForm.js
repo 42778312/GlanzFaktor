@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import useScrollReveal from './useScrollReveal';
 
 emailjs.init({
   publicKey: 'JxvaKXQZMNtQpjs7R',
@@ -7,8 +8,10 @@ emailjs.init({
 
 export default function ContactForm() {
   const form = useRef();
-  const [status, setStatus] = useState(null); // 'success' | 'error' | null
+  const sectionRef = useRef(null);
+  const [status, setStatus] = useState(null);
   const [sending, setSending] = useState(false);
+  useScrollReveal(sectionRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,11 +33,11 @@ export default function ContactForm() {
   };
 
   return (
-    <div id="contact-form" className="portfolio-spacer">
+    <div id="contact-form" className="portfolio-spacer" ref={sectionRef}>
       <section className="section-regular bottom-space">
         <div className="w-layout-blockcontainer container-large w-container">
           <div className="w-layout-grid quote-grid">
-            <div className="quote-image-wrap">
+            <div className="quote-image-wrap reveal reveal-left">
               <img
                 src="/Assest/67ed0cb918a16dfcec7cea30/contact-us.jpeg"
                 loading="lazy"
@@ -45,7 +48,7 @@ export default function ContactForm() {
               <div className="quote-image-overlay"></div>
             </div>
 
-            <div className="quote-form-wrap w-form">
+            <div className="quote-form-wrap w-form reveal reveal-right" style={{ '--d': '0.15s' }}>
               {status === 'success' ? (
                 <div className="success-message w-form-done" style={{ display: 'block' }}>
                   <div>Danke! Ihre Einsendung wurde erhalten!</div>

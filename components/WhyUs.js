@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import useScrollReveal from './useScrollReveal';
+
 const expertCards = [
   {
     icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c1522083736abab99630_9a2fc1f369b599ca6024417779f8cb0d_expert-icon-1.svg',
@@ -26,6 +29,9 @@ const expertCards = [
 ];
 
 export default function WhyUs() {
+  const sectionRef = useRef(null);
+  useScrollReveal(sectionRef);
+
   const scrollToContact = (e) => {
     e.preventDefault();
     const el = document.querySelector('#contact-form');
@@ -33,17 +39,18 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="why-us" className="section-regular">
+    <section id="why-us" className="section-regular" ref={sectionRef}>
       <div className="w-layout-blockcontainer container w-container">
         <div className="w-layout-grid expert-grid">
-          <div className="w-layout-vflex">
+
+          {/* Left column — slides in from left */}
+          <div className="w-layout-vflex reveal reveal-left">
             <div className="section-title-wrap">
               <div className="subtitle align-left">
                 <div className="subtitle-icon">
                   <img
                     src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68ada4d8c8e2e861698ff365_subtitle-star.svg"
-                    loading="lazy"
-                    alt="star"
+                    loading="lazy" alt="star"
                   />
                 </div>
                 <div>DARUM GLANZFAKTOR</div>
@@ -57,7 +64,7 @@ export default function WhyUs() {
                   zuverlässigen Partner, der Ihre Immobilie mit Leidenschaft und höchster
                   Professionalität behandelt. Unsere maßgeschneiderten Lösungen, modernste
                   Ausrüstung und das engagierte Team aus der Region garantieren Ihnen kristallklare
-                  Sauberkeit, die begeistert. Erleben Sie den Unterschied, den echte Expertise macht!
+                  Sauberkeit, die begeistert.
                 </p>
               </div>
               <div className="w-layout-vflex mg-top-30">
@@ -70,8 +77,7 @@ export default function WhyUs() {
                   <div className="button-icon">
                     <img
                       src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"
-                      loading="lazy"
-                      alt="arrow"
+                      loading="lazy" alt="arrow"
                     />
                   </div>
                 </a>
@@ -79,9 +85,10 @@ export default function WhyUs() {
             </div>
           </div>
 
+          {/* Right: cards stagger from right */}
           <div className="expert-card-wrap">
             {expertCards.map((card, i) => (
-              <div key={i} className="expert-card">
+              <div key={i} className="expert-card reveal reveal-right" style={{ '--d': `${i * 0.13}s` }}>
                 <div className="expert-card-icon-wrap">
                   <img src={card.icon} loading="lazy" alt={card.alt} className="expert-icon" />
                 </div>
@@ -90,6 +97,7 @@ export default function WhyUs() {
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
