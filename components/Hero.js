@@ -7,8 +7,7 @@ export default function Hero() {
 
   const scrollToContact = (e) => {
     e.preventDefault();
-    const el = document.querySelector('#contact-form');
-    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    document.dispatchEvent(new CustomEvent('gf:openContact'));
   };
 
   // Trigger entrance animations after first paint

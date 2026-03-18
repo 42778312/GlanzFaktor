@@ -64,7 +64,7 @@ export default function Navbar() {
                 <div className="nav-button-line" />
                 <a
                   href="#contact-form"
-                  onClick={(e) => scrollTo(e, '#contact-form')}
+                  onClick={(e) => { e.preventDefault(); document.dispatchEvent(new CustomEvent('gf:openContact')); }}
                   className="secondary-button w-inline-block"
                 >
                   <div>KOSTENLOS anfragen</div>
@@ -95,12 +95,19 @@ export default function Navbar() {
       <div className={`gf-mobile-nav${menuOpen ? ' open' : ''}`}>
         <div className="gf-mobile-nav-inner">
           {NAV_LINKS.map(([id, label]) => (
-            <a key={id} href={id} onClick={(e) => scrollTo(e, id)} className="gf-mobile-link">
+            <a key={id} href={id} onClick={(e) => { scrollTo(e, id); setMenuOpen(false); }} className="gf-mobile-link">
               {label}
             </a>
           ))}
           <a href="tel:+491766167596" className="gf-mobile-link" style={{ fontWeight: 600 }}>
             📞 (0176) 616 77596
+          </a>
+          <a
+            href="#contact-form"
+            onClick={(e) => { e.preventDefault(); setMenuOpen(false); document.dispatchEvent(new CustomEvent('gf:openContact')); }}
+            style={{ display: 'block', background: '#2d3142', color: '#fff', borderRadius: '8px', textAlign: 'center', padding: '14px 16px', fontWeight: 700, marginTop: '8px', textDecoration: 'none' }}
+          >
+            KOSTENLOS anfragen
           </a>
         </div>
       </div>

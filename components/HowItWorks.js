@@ -70,8 +70,7 @@ export default function HowItWorks() {
 
   const scrollToContact = (e) => {
     e.preventDefault();
-    const el = document.querySelector('#contact-form');
-    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    document.dispatchEvent(new CustomEvent('gf:openContact'));
   };
 
   return (

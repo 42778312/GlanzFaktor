@@ -149,15 +149,15 @@ export default function Counter() {
                 <p style={{ color: '#475569', fontSize: '1.05rem', marginBottom: '1.2rem', lineHeight: '1.5' }}>
                 Diese vertrauenswürdigen Unternehmen setzen auf unsere professionellen Dienstleistungen.
               </p>
-              <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 {PARTNERS.map((p, idx) => (
                   <div
                     key={p.label}
                     className="gf-partner-logo-animated hover-scale"
                     style={{
                       animation: `slideInFade 0.6s ease-out ${idx * 0.15}s both`,
-                      height: '55px',
-                      width: '130px',
+                      height: '64px',
+                      width: '140px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -198,15 +198,26 @@ export default function Counter() {
             </div>
           </div>
 
-        <div className="reveal reveal-right" style={{ '--d': '0.2s', borderRadius: '14px', overflow: 'hidden', border: '1.5px solid rgba(100,140,255,0.35)', boxShadow: '0 8px 32px rgba(30,40,120,0.4)', height: '520px', position: 'relative' }}>
+          <div className="reveal reveal-right gf-map-container" style={{ '--d': '0.2s', borderRadius: '16px', overflow: 'hidden', border: '1.5px solid rgba(100,140,255,0.35)', boxShadow: '0 8px 32px rgba(30,40,120,0.4)', height: '480px', position: 'relative' }}>
           <LeafletMap />
         </div>
 
         {/* Custom overrides for dark theme */}
-        <style>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           @keyframes slideInFade {
             from { opacity: 0; transform: translateX(-15px); }
             to   { opacity: 1; transform: translateX(0); }
+          }
+
+          /* Responsive map height */
+          @media (max-width: 991px) {
+            .gf-map-container { height: 400px !important; border-radius: 14px !important; }
+          }
+          @media (max-width: 767px) {
+            .gf-map-container { height: 340px !important; border-radius: 12px !important; }
+          }
+          @media (max-width: 479px) {
+            .gf-map-container { height: 280px !important; border-radius: 10px !important; }
           }
           .gf-partner-logo-animated:hover {
             background: rgba(59,130,246,0.15) !important;
@@ -300,7 +311,7 @@ export default function Counter() {
           .gf-city-label::before {
             border-right-color: rgba(59,130,246,0.35) !important;
           }
-        `}</style>
+        ` }} />
       </div>
     </section>
   );

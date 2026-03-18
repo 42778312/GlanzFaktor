@@ -10,7 +10,7 @@ export default function MarqueeSection() {
         <div className="marquee-inner">
           {[...marqueeItems, ...marqueeItems].map((word, i) => (
             <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '20px', marginRight: '20px' }}>
-              <h2 className="marquee-text" style={{ display: 'inline-block', margin: 0 }}>{word}</h2>
+              <span className="marquee-text" style={{ display: 'inline-block', margin: 0 }}>{word}</span>
               <span className="marquee-star-wrap" style={{ display: 'inline-block' }}>
                 <img src={starSrc} loading="lazy" alt="Dark star" />
               </span>

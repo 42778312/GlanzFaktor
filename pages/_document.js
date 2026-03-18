@@ -16,7 +16,7 @@ export default function Document() {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport" />
 
         {/* Webflow CSS */}
         <link

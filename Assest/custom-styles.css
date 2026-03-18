@@ -668,7 +668,7 @@
 
 /* Quote Form Spacing */
 .quote-form-wrap {
-    padding: 60px 50px !important;
+    padding: 48px 44px !important;
 }
 
 /* Footer Improvements */
@@ -1141,14 +1141,17 @@ html.scrolled .navbar.w-nav {
 .gf-testi-card {
     background: #fff;
     border-radius: 24px;
-    padding: 48px 52px;
+    padding: 64px 80px;
     position: relative;
-    box-shadow: 0 8px 48px rgba(0,0,0,0.07);
-    display: grid;
-    grid-template-columns: 190px 1fr;
-    gap: 44px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
 }
 .gf-testi-card::before {
     content: '\201C';
@@ -1168,22 +1171,23 @@ html.scrolled .navbar.w-nav {
     object-fit: cover;
     flex-shrink: 0;
 }
-.gf-testi-stars { display: flex; gap: 3px; margin-bottom: 14px; }
-.gf-testi-star  { font-size: 16px; color: #F7931E; }
+.gf-testi-stars { display: flex; gap: 3px; margin-bottom: 24px; justify-content: center; }
+.gf-testi-star  { font-size: 20px; color: #F7931E; }
 .gf-testi-text {
-    font-size: 17px;
-    line-height: 1.75;
-    color: #3a3f5c;
-    margin: 0 0 24px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #475569;
+    margin: 0 0 32px;
     font-style: italic;
+    font-weight: 500;
 }
 .gf-testi-name {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    color: #1a1f36;
-    margin: 0 0 4px;
+    color: #1e293b;
+    margin: 0 0 6px;
 }
-.gf-testi-role { font-size: 13px; color: #999; margin: 0; }
+.gf-testi-role { font-size: 14px; color: #64748b; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 .gf-testi-controls {
     display: flex;
     align-items: center;
@@ -1345,4 +1349,246 @@ html.scrolled .navbar.w-nav {
     height: auto !important;
 }
 .footer-section .footer-bg-wrap { display: none !important; }
+
+/* =====================================================
+   GLOBAL RESPONSIVE — Tablet (≤ 991px) & Mobile (≤ 767px) & Small (≤ 479px)
+   ===================================================== */
+
+/* ── Base: enforce full-width, no horizontal scroll ── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; max-width: 100vw; }
+
+/* ── Webflow containers: uncap on mobile ── */
+.w-container, .container, .w-layout-blockcontainer {
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* =====================================================
+   TABLET (≤ 991px)
+   ===================================================== */
+@media (max-width: 991px) {
+    /* Typography */
+    h1, .heading-1 { font-size: clamp(2rem, 6vw, 3.5rem) !important; }
+    h2, .section-title { font-size: clamp(1.5rem, 4vw, 2.5rem) !important; }
+
+    /* Section padding */
+    .section-regular { padding-top: 72px !important; padding-bottom: 72px !important; }
+    .hiw-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+
+    /* Hero */
+    .home-banner-section { min-height: 80vh !important; }
+    .hero-content-wrap { padding: 0 20px !important; }
+    .hero-buttons-row { flex-wrap: wrap; gap: 12px !important; }
+
+    /* HowItWorks */
+    .hiw-steps { grid-template-columns: 1fr 1fr !important; }
+
+    /* Services BA Slider */
+    .ba-slider { min-height: 380px !important; }
+
+    /* Counter section — white card */
+    .gf-counter-section {
+        border-radius: 16px !important;
+        margin: 1rem !important;
+        width: calc(100% - 2rem) !important;
+        padding: 2rem 1.5rem !important;
+    }
+
+    /* Partner logos */
+    .gf-partner-logo-animated { width: 100px !important; height: 44px !important; }
+
+    /* Map */
+    .reveal.reveal-right { width: 100% !important; height: 400px !important; }
+    .gf-map-container { height: 400px !important; }
+
+    /* Portfolio grid */
+    .home-project-card-image { height: 280px !important; }
+
+    /* FAQ */
+    .gf-faq-section { padding: 64px 0 !important; }
+
+    /* Portfolio spacer */
+    .portfolio-spacer { margin-top: 0 !important; margin-bottom: 0 !important; }
+}
+
+/* =====================================================
+   MOBILE (≤ 767px)
+   ===================================================== */
+@media (max-width: 767px) {
+    /* ── Global spacing — override class-based selectors too ── */
+    section { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .section-regular { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .hiw-section { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .gf-testi-section { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .gf-faq-section { padding-top: 48px !important; padding-bottom: 48px !important; }
+
+    /* ── Remove spacer margins ── */
+    .portfolio-spacer { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+    /* ── Typography ── */
+    h1, .heading-1 { font-size: clamp(1.8rem, 8vw, 2.5rem) !important; line-height: 1.2 !important; }
+    h2, .section-title { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+    p, body { font-size: 15px !important; }
+
+    /* ── Navbar ── */
+    .navbar-logo-image { width: 120px !important; }
+
+    /* ── Hero: full-viewport, better mobile layout ── */
+    .home-banner-section {
+        min-height: 100svh !important;
+        min-height: 100vh !important;
+        padding: 85px 20px 48px !important;
+    }
+    /* Stack content vertically, no gap */
+    .home-banner-area { flex-direction: column !important; gap: 0 !important; }
+    /* Content area: full-width, no inherited padding from Webflow */
+    .home-banner-content-area {
+        max-width: 100% !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+    /* Hide right-side decorative columns on mobile */
+    .hero-cards-col { display: none !important; }
+    .home-banner-tag-wrap { display: none !important; }
+
+    /* Hero title: proper size + word spacing so words don't collapse visually */
+    .banner-title {
+        font-size: clamp(1.9rem, 8.5vw, 2.6rem) !important;
+        line-height: 1.15 !important;
+        word-spacing: 0.18em !important;
+    }
+    /* Darken overlay so text stays readable on portrait crop */
+    .hero-bg-overlay {
+        background: linear-gradient(
+            160deg,
+            rgba(10, 20, 30, 0.88) 0%,
+            rgba(10, 20, 30, 0.65) 55%,
+            rgba(10, 20, 30, 0.40) 100%
+        ) !important;
+    }
+    /* Shift image to focus on scenic part in portrait */
+    .home-banner-image { object-position: 70% center !important; }
+
+    /* Rating badges: stack vertically, full-width pills */
+    .hero-badges-row {
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin-top: 20px !important;
+    }
+    .hero-badge-pill {
+        width: 100% !important;
+        padding: 10px 14px 10px 10px !important;
+        gap: 10px !important;
+    }
+    .hero-badge-icon { width: 40px !important; height: 40px !important; }
+    .hero-badge-label { font-size: 10px !important; }
+    .hero-badge-stars svg { width: 12px !important; height: 12px !important; }
+    .hero-badge-score { font-size: 12px !important; }
+
+    /* ── HowItWorks steps ── */
+    .hiw-steps { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+    /* ── Counter / White card ── */
+    .gf-counter-section {
+        margin: 0.5rem !important;
+        width: calc(100% - 1rem) !important;
+        border-radius: 12px !important;
+        padding: 1.5rem 1rem !important;
+    }
+    .gf-counter-split { grid-template-columns: 1fr !important; }
+
+    /* ── Partner logos ── */
+    .gf-partner-logo-animated { width: 90px !important; height: 40px !important; }
+
+    /* ── Map ── */
+    .reveal.reveal-right { height: 340px !important; }
+    .gf-map-container { height: 340px !important; }
+
+    /* ── Testimonials marquee ── */
+    .gf-testi-marquee-item { width: 300px !important; }
+    .gf-testi-card-override { padding: 28px 20px !important; }
+    .gf-testi-text { font-size: 15px !important; }
+    .gf-testi-card-override::before { font-size: 90px !important; top: 5px !important; right: 12px !important; }
+
+    /* ── Services Before/After Slider ── */
+    #services { overflow-x: hidden; }
+    .ba-slider { height: 300px !important; min-height: 0 !important; width: 100% !important; }
+    .home-service-grid.ba-grid-override {
+        grid-template-columns: 1fr !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        gap: 20px !important;
+    }
+    .home-service-card.svc-ba-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .home-project-card-image { height: 240px !important; }
+
+    /* ── Portfolio ── */
+    .home-projects-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* ── Contact Form (handled by scoped #contact-form style in ContactForm.js) ── */
+    .gf-contact-grid, .contact-grid, .quote-grid { grid-template-columns: 1fr !important; }
+    .quote-image-wrap { display: none !important; }
+
+    /* ── Partner logos: bigger on mobile ── */
+    .gf-partner-logo-animated { width: 110px !important; height: 54px !important; }
+
+    /* ── FAQ ── */
+    .gf-faq-q { font-size: 15px !important; padding: 18px 0 !important; }
+    .gf-faq-area { margin-top: 32px !important; }
+
+    /* ── Footer ── */
+    .footer-section { padding: 16px 0 !important; }
+    .footer-section .w-container { flex-direction: column !important; gap: 8px !important; }
+}
+
+/* =====================================================
+   SMALL PHONES (≤ 479px)
+   ===================================================== */
+@media (max-width: 479px) {
+    /* ── Hero ── */
+    .home-banner-section { padding: 80px 16px 40px !important; }
+    .banner-title { font-size: clamp(1.7rem, 9vw, 2.2rem) !important; word-spacing: 0.15em !important; }
+    .hero-main-title { font-size: clamp(1.6rem, 9vw, 2rem) !important; }
+    .subtitle-icon { display: none !important; }
+
+    /* ── Section spacing ── */
+    .section-regular { padding-top: 40px !important; padding-bottom: 40px !important; }
+    .hiw-section { padding-top: 40px !important; padding-bottom: 40px !important; }
+    .portfolio-spacer { margin: 0 !important; }
+
+    /* ── Counter white card ── */
+    .gf-counter-section { margin: 0 !important; width: 100% !important; border-radius: 0 !important; }
+    .gf-counter-grid { gap: 12px !important; }
+    .gf-counter-num { font-size: 40px !important; }
+
+    /* ── Testimonials ── */
+    .gf-testi-marquee-item { width: 260px !important; }
+    .gf-testi-marquee-track { gap: 16px !important; }
+    .gf-testi-text { font-size: 14px !important; }
+    .gf-testi-name { font-size: 15px !important; }
+
+    /* ── Map ── */
+    .reveal.reveal-right { height: 280px !important; }
+    .gf-map-container { height: 280px !important; border-radius: 12px !important; }
+
+    /* ── Partner logos ── */
+    .gf-partner-logo-animated { width: 100px !important; height: 48px !important; }
+
+    /* ── Services BA Slider ── */
+    .ba-slider { height: 240px !important; }
+    .home-service-grid.ba-grid-override { gap: 16px !important; }
+
+    /* ── Portfolio ── */
+    .home-project-card-image { height: 200px !important; }
+
+    /* ── Typography ── */
+    h1, .heading-1 { font-size: clamp(1.5rem, 10vw, 1.9rem) !important; }
+    h2, .section-title { font-size: clamp(1.2rem, 7vw, 1.6rem) !important; }
+}
 

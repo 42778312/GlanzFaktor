@@ -88,7 +88,7 @@ export default function Testimonials() {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .gf-testi-marquee-wrapper {
           width: 100vw;
           position: relative;
@@ -183,12 +183,19 @@ export default function Testimonials() {
 
         @media (max-width: 991px) {
           .gf-testi-marquee-item {
-            width: 380px;
+            width: 360px;
+          }
+          .gf-testi-marquee-track {
+            animation-duration: 38s;
           }
         }
         @media (max-width: 767px) {
           .gf-testi-marquee-item {
-            width: 320px;
+            width: 290px;
+          }
+          .gf-testi-marquee-track {
+            animation-duration: 30s;
+            gap: 16px;
           }
           .gf-testi-card-override {
              padding: 24px;
@@ -198,7 +205,7 @@ export default function Testimonials() {
             top: 5px; right: 15px;
           }
         }
-      `}</style>
+      ` }} />
     </section>
   );
 }
