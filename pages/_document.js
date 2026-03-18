@@ -28,6 +28,13 @@ export default function Document() {
         {/* Custom overrides */}
         <link href="/Assest/custom-styles.css" rel="stylesheet" type="text/css" />
 
+        {/* Leaflet CSS */}
+        <link
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          rel="stylesheet"
+          crossOrigin=""
+        />
+
         {/* Google Fonts */}
         <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />

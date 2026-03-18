@@ -28,20 +28,20 @@ const STEPS = [
   {
     n: '01',
     Icon: IconContact,
-    title: 'Anfrage stellen',
-    text: 'Kontaktieren Sie uns telefonisch, per E-Mail oder über unser Kontaktformular – schnell, unkompliziert und kostenlos.',
+    title: 'KOSTENLOS anfragen',
+    text: 'Kontaktieren Sie uns telefonisch, per E-Mail, WhatsApp oder über unser Kontaktformular – schnell, unkompliziert und VÖLLIG KOSTENLOS. Wir sind bereit, sofort zu helfen!',
   },
   {
     n: '02',
     Icon: IconOffer,
-    title: 'Individuelles Angebot',
-    text: 'Wir erstellen Ihnen ein maßgeschneidertes Angebot basierend auf Ihren Bedürfnissen – transparent und fair kalkuliert.',
+    title: 'KOSTENLOSES Angebot',
+    text: 'Wir erstellen Ihnen schnell und professionell ein maßgeschneidertes Angebot – OHNE KOSTEN, transparent und fair kalkuliert. Keine versteckten Gebühren!',
   },
   {
     n: '03',
     Icon: IconSparkle,
-    title: 'Perfekte Ausführung',
-    text: 'Unser Profi-Team reinigt termingerecht, gründlich und mit höchster Sorgfalt – Sie werden begeistert sein!',
+    title: 'Beste Leistung garantiert',
+    text: 'Unser hochqualifiziertes Profi-Team arbeitet termingerecht, extrem gründlich und mit höchster Sorgfalt – wir garantieren, dass Sie begeistert sein werden!',
   },
 ];
 
@@ -75,7 +75,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="hiw-section" ref={sectionRef}>
+    <section id="how-it-works" className="hiw-section" ref={sectionRef}>
       <div className="w-layout-blockcontainer container w-container">
 
         {/* ── Title ── */}
@@ -91,7 +91,7 @@ export default function HowItWorks() {
             <div>So einfach geht&apos;s</div>
           </div>
           <h2 className="section-title mg-0 hiw-heading">
-            Ihr Weg zur perfekten Sauberkeit<br />in nur 3 Schritten!
+            Ihr Weg zur perfekten Sauberkeit — KOSTENLOSE Beratung inklusive!<br />In nur 3 einfachen Schritten!
           </h2>
         </div>
 
@@ -140,10 +140,10 @@ export default function HowItWorks() {
                 />
               </div>
               <h3 className="hiw-step-title hiw-cta-title">
-                Bereit für strahlende Sauberkeit?<br />Kontaktieren Sie uns jetzt!
+                Bereit für strahlende Sauberkeit?<br />KOSTENLOS anfragen — jetzt!
               </h3>
               <p className="hiw-step-text hiw-cta-text">
-                Kostenlos &amp; unverbindlich — in wenigen Minuten erledigt.
+                KOSTENLOSES Angebot &amp; unverbindliche Beratung — in wenigen Minuten erledigt! Wir antworten schnell!
               </p>
               <a
                 href="#contact-form"

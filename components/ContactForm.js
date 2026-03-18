@@ -64,9 +64,9 @@ export default function ContactForm() {
                           alt="star"
                         />
                       </div>
-                      <div>Einen Termin buchen</div>
+                      <div>KOSTENLOS & UNVERBINDLICH</div>
                     </div>
-                    <h2 className="section-title white-mg-0">Jetzt unverbindlich anfragen!</h2>
+                    <h2 className="section-title white-mg-0">Holen Sie sich JETZT Ihr kostenloses Angebot!</h2>
                   </div>
 
                   <div className="quote-form-area">
@@ -112,7 +112,7 @@ export default function ContactForm() {
                   <input
                     type="submit"
                     className="primary-button w-button"
-                    value={sending ? 'Wird gesendet...' : 'Jetzt kontaktieren'}
+                    value={sending ? 'Wird gesendet...' : 'KOSTENLOSE Anfrage absenden'}
                     disabled={sending}
                   />
 

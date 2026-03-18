@@ -5,8 +5,8 @@ const expertCards = [
   {
     icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c1522083736abab99630_9a2fc1f369b599ca6024417779f8cb0d_expert-icon-1.svg',
     alt: 'Spray Bottle',
-    title: 'Premium Tiefenreinigung',
-    text: 'Mit modernster Reinigungstechnologie und jahrelanger Expertise entfernen wir selbst hartnäckigste Verschmutzungen – für ein gesundes und hygienisches Raumklima.',
+    title: '★ Premium Tiefenreinigung mit Best-Garantie',
+    text: 'Mit modernster Reinigungstechnologie und jahrelanger Expertise entfernen wir selbst hartnäckigste Verschmutzungen – für ein gesundes und hygienisches Raumklima. KOSTENLOSE Nachbearbeitung, wenn Sie nicht 100% zufrieden sind!',
   },
   {
     icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c44b9a7889acc6ab43f8_2542529454b91f55bedb49f2fb760f8a_expert-icon-2.svg',
@@ -23,8 +23,8 @@ const expertCards = [
   {
     icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c45db572661a0c79f76a_ad2a8554a1de10fcd249dee6f7d174f1_expert-icon-4.svg',
     alt: 'Offering',
-    title: 'Faire Transparente Preise',
-    text: 'Premium-Qualität zu fairen Konditionen – keine versteckten Kosten, nur erstklassiger Service, der sich für Sie auszahlt.',
+    title: '★ Faire, transparente Preise — KOSTENLOS Angebot',
+    text: 'Premium-Qualität zu fairen Konditionen – KEINE versteckten Kosten! Erhalten Sie jetzt ein KOSTENLOSES, unverbindliches Angebot. Nur erstklassiger Service, der sich für Sie auszahlt!',
   },
 ];
 
@@ -57,14 +57,14 @@ export default function WhyUs() {
               </div>
               <div className="max-width-800">
                 <h2 className="section-title mg-0">
-                  Warum über 50 Kunden am Bodensee uns vertrauen
+                  Warum über 50 Kunden am Bodensee uns vertrauen — und warum SIE es auch sollten
                 </h2>
                 <p style={{ marginTop: '20px', fontSize: '18px', lineHeight: '1.7', color: '#555' }}>
                   Bei GlanzFaktor erhalten Sie mehr als nur eine Reinigung – Sie bekommen einen
                   zuverlässigen Partner, der Ihre Immobilie mit Leidenschaft und höchster
-                  Professionalität behandelt. Unsere maßgeschneiderten Lösungen, modernste
-                  Ausrüstung und das engagierte Team aus der Region garantieren Ihnen kristallklare
-                  Sauberkeit, die begeistert.
+                  Professionalität behandelt. <strong>KOSTENLOSE Erstberatung, kostenlose Besichtigung</strong> — maßgeschneiderte Lösungen, modernste
+                  Ausrüstung und ein hochqualifiziertes Team aus der Region garantieren Ihnen kristallklare
+                  Sauberkeit, die begeistert!
                 </p>
               </div>
               <div className="w-layout-vflex mg-top-30">
@@ -73,7 +73,7 @@ export default function WhyUs() {
                   onClick={scrollToContact}
                   className="secondary-button w-inline-block"
                 >
-                  <div>Kontakt aufnehmen</div>
+                  <div>KOSTENLOS kontaktieren!</div>
                   <div className="button-icon">
                     <img
                       src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"

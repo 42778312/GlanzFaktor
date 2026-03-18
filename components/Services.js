@@ -55,29 +55,29 @@ const services = [
     title: 'Büros & Verwaltungsgebäude',
     icon: 'https://cdn.prod.website-files.com/67ed0cb918a16dfcec7cea30/68021335c8a6bf6da155edb9_service-icon-1.svg',
     text: 'Professionelle Büroreinigung für produktive Arbeitsumgebungen. Von Schreibtischen über Besprechungsräume bis zu Sanitäranlagen – wir sorgen für ein hygienisches und repräsentatives Arbeitsklima am Bodensee.',
-    before: '/Assest/67ed0cb918a16dfcec7cea30/68b69a8b86ae316e2321f804_blog-img-1.jpg', 
-    after:  '/Assest/67ed0cb918a16dfcec7cea30/68b69a9a956c50ba031ccf3b_blog-img-2.jpg', 
+    before: '/Assest/67ed0cb918a16dfcec7cea30/house-clean.png', 
+    after:  '/Assest/67ed0cb918a16dfcec7cea30/house-dirty.png', 
   },
   {
     title: 'Fitnessstudios',
     icon: 'https://cdn.prod.website-files.com/67ed0cb918a16dfcec7cea30/6822fe61a7f89b35ad6d177b_service-icon-2.svg',
     text: 'Spezialisierte Reinigung für Fitnessstudios und Sportstätten. Hygienische Gerätereinigung, Umkleiden und Duschbereiche – für eine saubere und motivierende Trainingsatmosphäre Ihre Mitglieder begeistern wird.',
-    before: '/Assest/67ed0cb918a16dfcec7cea30/68b69acc2748ace218506f0c_blog-img-6.jpg',
-    after:  '/Assest/67ed0cb918a16dfcec7cea30/68b6993bd208e42ea8eaf3db_portfolio-img-3.jpg',
+    before: '/Assest/67ed0cb918a16dfcec7cea30/gym-clean.png',
+    after:  '/Assest/67ed0cb918a16dfcec7cea30/gym_dirty.png',
   },
   {
     title: 'Hotels & Pensionen',
     icon: 'https://cdn.prod.website-files.com/67ed0cb918a16dfcec7cea30/6822fe6b7fd69f641f5fadb7_service-icon-3.svg',
     text: 'Perfekte Sauberkeit für Ihre Gäste! Zimmerreinigung, Bettwäsche-Service und Gemeinschaftsbereiche – wir sorgen dafür, dass Ihre Gäste am Bodensee einen makellosen Aufenthalt genießen und gerne wiederkommen.',
-    before: '/Assest/67ed0cb918a16dfcec7cea30/bodensee.jpeg',
-    after:  '/Assest/67ed0cb918a16dfcec7cea30/contact-us.jpeg',
+    before: '/Assest/67ed0cb918a16dfcec7cea30/hostel-clean.png',
+    after:  '/Assest/67ed0cb918a16dfcec7cea30/hostel-dirty.png',
   },
   {
     title: 'Einzelhandel & Einkaufszentren',
     icon: 'https://cdn.prod.website-files.com/67ed0cb918a16dfcec7cea30/6822fe7443bb44e2cd82aef8_service-icon-4.svg',
     text: 'Einladende Verkaufsflächen durch professionelle Reinigung. Schaufenster, Verkaufsräume, Lager und Kundentoiletten – schaffen Sie ein angenehmes Einkaufserlebnis, das Ihre Kunden zum Verweilen einlädt.',
-    before: '/Assest/67ed0cb918a16dfcec7cea30/68b6992d41510a89fa3e9e9f_portfolio-img-2.jpg',
-    after:  '/Assest/67ed0cb918a16dfcec7cea30/68b69a8b86ae316e2321f804_blog-img-1.jpg',
+    before: 'https://images.unsplash.com/photo-1555529733-0e670560f7e1?auto=format&fit=crop&w=800&q=80',
+    after:  'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
   },
 ];
 
@@ -86,7 +86,7 @@ export default function Services() {
   useScrollReveal(sectionRef);
 
   return (
-    <div className="grey-bg" ref={sectionRef}>
+    <div id="services" className="grey-bg" ref={sectionRef}>
       <section className="section-regular">
         <div className="w-layout-blockcontainer container w-container">
           <div className="section-title-wrap">
@@ -103,7 +103,7 @@ export default function Services() {
               </div>
               <div className="inner-container-600">
                 <h2 className="section-title mg-0">
-                  Verwandeln Sie Ihre Räume mit professioneller Reinigung
+                  Verwandeln Sie Ihre Räume mit professioneller Reinigung — KOSTENLOSE Besichtigung!
                 </h2>
               </div>
             </div>
@@ -129,7 +129,6 @@ export default function Services() {
                         </div>
                       </div>
                     </div>
-                    <div className="home-service-card-overlay"></div>
                   </div>
                 </div>
               ))}

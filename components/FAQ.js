@@ -3,9 +3,9 @@ import useScrollReveal from './useScrollReveal';
 
 const faqs = [
   {
-    question: 'Was macht GlanzFaktor zur ersten Wahl am Bodensee?',
+    question: 'Was macht GlanzFaktor zur ersten Wahl am Bodensee? (KOSTENLOSE Beratung!)',
     answer:
-      'Wir kombinieren jahrelange Erfahrung mit modernster Reinigungstechnologie und ökologischen Produkten. Unser zertifiziertes Team garantiert höchste Qualität bei jedem Auftrag – von der Privatwohnung bis zum Gewerbeobjekt in Konstanz und Umgebung.',
+      'Wir kombinieren jahrelange Erfahrung mit modernster Reinigungstechnologie und ökologischen Produkten. Unser hochqualifiziertes zertifiziertes Team garantiert beste Qualität bei jedem Auftrag – von der Privatwohnung bis zum Gewerbeobjekt in Konstanz und Umgebung. KOSTENLOSE Erstberatung für alle Neukunden! Kontaktieren Sie uns jetzt.',
   },
   {
     question: 'Warum sind Ihre Reinigungsprodukte besonders?',
@@ -13,14 +13,14 @@ const faqs = [
       'Wir verwenden ausschließlich umweltzertifizierte und biologisch abbaubare Reinigungsmittel – perfekt für die sensible Bodenseeregion. Sie sind zu 100% sicher für Kinder, Haustiere und Allergiker und dennoch hochwirksam gegen hartnäckige Verschmutzungen.',
   },
   {
-    question: 'Wie schnell kann ich einen Termin bekommen?',
+    question: 'Wie schnell kann ich einen KOSTENLOSEN Termin bekommen?',
     answer:
-      'In der Regel können wir Ihnen innerhalb von 24-48 Stunden einen Termin anbieten! Kontaktieren Sie uns telefonisch, per WhatsApp oder über unser Kontaktformular – wir finden gemeinsam den perfekten Zeitpunkt für Ihre Reinigung.',
+      'Schneller als Sie denken! In der Regel können wir Ihnen innerhalb von 24-48 Stunden einen KOSTENLOSEN Besichtigungstermin anbieten! Kontaktieren Sie uns telefonisch, per WhatsApp oder über unser KOSTENLOSES Kontaktformular – wir finden gemeinsam den perfekten Zeitpunkt für Ihr kostenloses Angebot.',
   },
   {
-    question: 'Bieten Sie eine Zufriedenheitsgarantie?',
+    question: 'Bieten Sie eine Best-Zufriedenheitsgarantie?',
     answer:
-      'Absolut! Wir stehen zu 100% hinter unserer Arbeit. Sollten Sie mit einem Ergebnis nicht vollständig zufrieden sein, kommen wir kostenlos zurück und bessern nach – bis Sie begeistert sind. Das ist unser GlanzFaktor-Versprechen!',
+      'Ja, zu 100%! Wir stehen zu 100% hinter unserer Arbeit und Ihrem Glück. Sollten Sie mit einem Ergebnis nicht vollständig zufrieden sein, kommen wir KOSTENLOS zurück und bessern nach – bis Sie begeistert sind! Das ist unser verbindliches GlanzFaktor-Best-Service-Versprechen!',
   },
 ];
 
@@ -39,7 +39,7 @@ export default function FAQ() {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="gf-faq-section section-regular" ref={sectionRef}>
+    <section id="faq" className="gf-faq-section section-regular" ref={sectionRef}>
       <div className="w-layout-blockcontainer container w-container">
 
         {/* Header */}

@@ -974,7 +974,7 @@ html.scrolled .navbar.w-nav {
    ===================================================== */
 .gf-counter-section {
     background: linear-gradient(135deg, #1a1f36 0%, #2d3142 60%, #1a1f36 100%);
-    padding: 72px 0 60px;
+    padding: 40px 0 40px;
     position: relative;
     overflow: hidden;
 }
@@ -1048,8 +1048,8 @@ html.scrolled .navbar.w-nav {
 .gf-counter-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-    align-items: start;
+    gap: 2rem;
+    align-items: stretch;
 }
 .gf-split-col {}
 /* Partner logos list */
@@ -1102,8 +1102,8 @@ html.scrolled .navbar.w-nav {
     line-height: 1.5;
     margin: 0;
 }
-/* BW Map */
-.gf-map-wrap { width: 100%; max-width: 320px; margin: 0 auto; }
+/* Map */
+.gf-map-wrap { width: 100%; max-width: none; margin: 0; }
 .gf-bw-map {
     width: 100%;
     height: auto;

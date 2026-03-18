@@ -1,7 +1,7 @@
 const starSrc =
   'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68b2db94db293a604e17d753_d1875dc52c96cb2db95ae96f2db83f05_marquee-star.svg';
 
-const marqueeItems = ['Polieren', 'Staubsaugen', 'Polieren', 'Staubsaugen', 'Polieren', 'Staubsaugen', 'Polieren', 'Staubsaugen'];
+const marqueeItems = ['KOSTENLOS kontaktieren', 'Professionelle Reinigung', 'KOSTENLOS kontaktieren', 'Best Service Garantie', 'KOSTENLOS kontaktieren', 'Polieren', 'KOSTENLOS kontaktieren', 'Unverbindliches Angebot'];
 
 export default function MarqueeSection() {
   return (

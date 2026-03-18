@@ -60,7 +60,8 @@ export default function Hero() {
                 <p>
                   Erleben Sie kristallklare Sauberkeit mit den Gebäudereinigungsprofis aus Konstanz!
                   Von privaten Wohnräumen bis zu gewerblichen Immobilien – wir bringen Ihren Raum
-                  zum Strahlen. Nachhaltig, zuverlässig und mit höchstem Qualitätsanspruch.
+                  zum Strahlen. Nachhaltig, zuverlässig und mit höchstem Qualitätsanspruch. 
+                  <strong>Kontaktieren Sie uns KOSTENLOS – wir sind bereit, Ihnen zu helfen!</strong>
                 </p>
               </div>
 
@@ -70,7 +71,7 @@ export default function Hero() {
                   onClick={scrollToContact}
                   className="primary-button w-inline-block"
                 >
-                  <div>Kontakt aufnehmen</div>
+                  <div>KOSTENLOS Angebot erhalten!</div>
                   <div className="button-icon">
                     <img
                       src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"

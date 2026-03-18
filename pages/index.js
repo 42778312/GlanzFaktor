@@ -5,7 +5,6 @@ import HowItWorks from '../components/HowItWorks';
 import Services from '../components/Services';
 import WhyUs from '../components/WhyUs';
 import MarqueeSection from '../components/MarqueeSection';
-import Portfolio from '../components/Portfolio';
 import ContactForm from '../components/ContactForm';
 import Counter from '../components/Counter';
 import Testimonials from '../components/Testimonials';
@@ -33,8 +32,6 @@ export default function Home() {
       <WhyUs />
 
       <MarqueeSection />
-
-      <Portfolio />
 
       <ContactForm />
 

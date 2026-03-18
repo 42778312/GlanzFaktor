@@ -3,63 +3,51 @@ import useScrollReveal from './useScrollReveal';
 
 const slides = [
   {
-    image: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/683d4e48a4ca8cd615e9f3b0_6b6317df7e28cfb29e19862ab8d102e4_testimonial-image-4.jpg',
-    alt: 'Sarah Johnson',
     text: '"Der Reinigungsservice war fantastisch! Sie haben mein Zuhause in einen makellosen Zustand gebracht. Vom Moment ihrer Ankunft an war das Team professionell."',
     name: 'Sarah Johnson',
     role: 'Hausbesitzer',
   },
   {
-    image: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/682597fb40a6776a7f76182a_1c68dd6dc669f0c56d0fe91f59fddbba_testimonial-image-2.jpg',
-    alt: 'John Matthews',
     text: '"Ihre Liebe zum Detail und ihre Professionalität stellen sicher, dass jeder Raum makellos und einladend ist – was einen großartigen Eindruck bei potenziellen Käufern hinterlässt."',
     name: 'John Matthews',
     role: 'Immobilienmakler',
   },
   {
-    image: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6822fb99bd9e553518d85efc_9f16ab2c9995fda549e7780c11fb7045_testimonial-image-1.jpg',
-    alt: 'Julia Schneider',
     text: '"Unser Büro in Radolfzell wurde von GlanzFaktor komplett gereinigt – vom Teppich bis zu den Fenstern. Unfassbar gründlich und mit umweltfreundlichen Produkten. Wir buchen regelmäßig!"',
     name: 'Julia Schneider',
     role: 'Geschäftsführerin IT-Firma',
   },
   {
-    image: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/682598055b28648b7f78b159_43c7eebc9fbad1361e04da4d0261f639_testimonial-image-3.jpg',
-    alt: 'Markus Bauer',
     text: '"Nach unserem Umzug hat GlanzFaktor eine Grundreinigung durchgeführt. Die Wohnung sah aus wie neu! Schnell, effizient und zum fairen Preis. Danke an das tolle Team!"',
     name: 'Markus Bauer',
     role: 'Neukunde, Kreuzlingen',
+  },
+  {
+    text: '"Als Arztpraxis haben wir höchste Hygieneansprüche. Das Team von GlanzFaktor arbeitet äußerst akribisch und diskret, selbst außerhalb unserer Sprechzeiten. Absolut empfehlenswert!"',
+    name: 'Dr. Michael Weber',
+    role: 'Praxisinhaber',
+  },
+  {
+    text: '"Wir haben GlanzFaktor für die Bauendreinigung unseres neuen Firmengebäudes engagiert. Alles wurde termingerecht und blitzsauber übergeben. Ein sehr zuverlässiger Partner!"',
+    name: 'Elena Müller',
+    role: 'Projektleiterin Bauunternehmen',
   },
 ];
 
 const STARS = ['★', '★', '★', '★', '★'];
 
 export default function Testimonials() {
-  const [current, setCurrent] = useState(0);
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef);
 
-  // Auto-advance every 5 s, pause on hover
-  const paused = useRef(false);
-  useEffect(() => {
-    const id = setInterval(() => {
-      if (!paused.current) setCurrent((c) => (c + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(id);
-  }, []);
-
-  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
-  const next = () => setCurrent((c) => (c + 1) % slides.length);
-
   return (
     <section
+      id="testimonials"
       className="gf-testi-section"
       ref={sectionRef}
-      onMouseEnter={() => { paused.current = true; }}
-      onMouseLeave={() => { paused.current = false; }}
+      style={{ overflow: 'hidden', paddingBottom: '80px', paddingTop: '40px' }}
     >
       <div className="w-layout-blockcontainer container w-container">
-
         {/* Header */}
         <div className="gf-testi-header reveal reveal-fade">
           <div className="subtitle" style={{ justifyContent: 'center' }}>
@@ -72,22 +60,21 @@ export default function Testimonials() {
             <div>Kundenstimmen</div>
           </div>
           <h2 className="section-title mg-0" style={{ textAlign: 'center', marginTop: '12px' }}>
-            Was unsere Kunden sagen
+            Was unsere Kunden sagen – und warum sie 100% zufrieden sind
           </h2>
+          <p style={{ textAlign: 'center', marginTop: '12px', fontSize: '16px', color: '#666' }}>
+            <strong>Kontaktieren Sie uns jetzt KOSTENLOS und erfahren Sie, warum über 50 Kunden GlanzFaktor vertrauen!</strong>
+          </p>
         </div>
+      </div>
 
-        {/* Slider */}
-        <div className="reveal reveal-scale" style={{ '--d': '0.15s' }}>
-          {slides.map((slide, i) => (
-            <div key={i} className={`gf-testi-slide${i === current ? ' active' : ''}`}>
-              <div className="gf-testi-card">
-                <img
-                  src={slide.image}
-                  alt={slide.alt}
-                  loading="lazy"
-                  className="gf-testi-img"
-                />
-                <div>
+      {/* Infinite Scrolling Marquee Track */}
+      <div className="reveal reveal-scale gf-testi-marquee-wrapper" style={{ '--d': '0.15s' }}>
+        <div className="gf-testi-marquee-track">
+          {[...slides, ...slides, ...slides].map((slide, i) => (
+            <div key={i} className="gf-testi-marquee-item">
+              <div className="gf-testi-card-override">
+                <div style={{ padding: '20px' }}>
                   <div className="gf-testi-stars">
                     {STARS.map((s, j) => <span key={j} className="gf-testi-star">{s}</span>)}
                   </div>
@@ -99,36 +86,119 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
-
-        {/* Controls */}
-        <div className="gf-testi-controls">
-          <button className="gf-testi-btn" onClick={prev} aria-label="Zurück">
-            <img
-              src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68b520e88780b7f7244fc3e7_left-arrow.svg"
-              loading="lazy" alt="left"
-            />
-          </button>
-
-          <div className="gf-testi-dots">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                className={`gf-testi-dot${i === current ? ' active' : ''}`}
-                onClick={() => setCurrent(i)}
-                aria-label={`Bewertung ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          <button className="gf-testi-btn" onClick={next} aria-label="Weiter">
-            <img
-              src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68b52132ab9922a82c95684f_right-arrow.svg"
-              loading="lazy" alt="right"
-            />
-          </button>
-        </div>
-
       </div>
+
+      <style>{`
+        .gf-testi-marquee-wrapper {
+          width: 100vw;
+          position: relative;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+          overflow: hidden;
+          padding: 20px 0 60px 0;
+        }
+
+        /* Fading Edges on Left and Right */
+        .gf-testi-marquee-wrapper::before,
+        .gf-testi-marquee-wrapper::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 15%;
+          height: 100%;
+          z-index: 2;
+          pointer-events: none;
+        }
+        .gf-testi-marquee-wrapper::before {
+          left: 0;
+          background: linear-gradient(to right, #f8f9fa, transparent);
+        }
+        .gf-testi-marquee-wrapper::after {
+          right: 0;
+          background: linear-gradient(to left, #f8f9fa, transparent);
+        }
+
+        .gf-testi-marquee-track {
+          display: flex;
+          gap: 30px;
+          width: max-content;
+          /* Animation speed: slower numbers = slower animation */
+          animation: scroll-left 45s linear infinite; 
+        }
+        
+        /* Pause on Hover! */
+        .gf-testi-marquee-wrapper:hover .gf-testi-marquee-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-33.333333% - 10px)); } 
+        }
+
+        .gf-testi-marquee-item {
+          width: 480px;
+          flex-shrink: 0;
+          display: flex;
+          height: 100%;
+          align-items: stretch;
+        }
+
+        /* Beautiful new Card adjustments specifically for the Marquee */
+        .gf-testi-card-override {
+          background: #fff;
+          border-radius: 20px;
+          padding: 40px;
+          margin: 0;
+          width: 100%;
+          text-align: center;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+          border: 1px solid rgba(0,0,0,0.03);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gf-testi-card-override:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        /* We restore the large quote icon styling specifically for these cards */
+        .gf-testi-card-override::before {
+          content: '\\201C';
+          position: absolute;
+          top: 10px; right: 30px;
+          font-size: 140px;
+          line-height: 1;
+          color: #f0f1f8;
+          font-family: Georgia, serif;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        @media (max-width: 991px) {
+          .gf-testi-marquee-item {
+            width: 380px;
+          }
+        }
+        @media (max-width: 767px) {
+          .gf-testi-marquee-item {
+            width: 320px;
+          }
+          .gf-testi-card-override {
+             padding: 24px;
+          }
+          .gf-testi-card-override::before {
+            font-size: 90px;
+            top: 5px; right: 15px;
+          }
+        }
+      `}</style>
     </section>
   );
 }

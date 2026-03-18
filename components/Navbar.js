@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const NAV_LINKS = [
-  ['#home',         'Startseite'],
-  ['#portfolio',    'Portfolio'],
+  ['#how-it-works', 'So geht\'s'],
+  ['#services',     'Leistungen'],
   ['#why-us',       'Warum GlanzFaktor'],
-  ['#contact-form', 'Kontakt'],
+  ['#faq',          'FAQ'],
 ];
 
 export default function Navbar() {
@@ -67,7 +67,7 @@ export default function Navbar() {
                   onClick={(e) => scrollTo(e, '#contact-form')}
                   className="secondary-button w-inline-block"
                 >
-                  <div>Termin</div>
+                  <div>KOSTENLOS anfragen</div>
                   <div className="button-icon">
                     <img
                       src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"
