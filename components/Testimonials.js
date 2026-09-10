@@ -1,5 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { Star, Quote } from 'lucide-react';
 import useScrollReveal from './useScrollReveal';
+import Eyebrow from './Eyebrow';
+import { Card } from '@/components/ui/card';
 
 const slides = [
   {
@@ -32,178 +35,67 @@ const slides = [
     name: 'Elena Müller',
     role: 'Projektleiterin Bauunternehmen',
   },
+  {
+    text: '"Die Haushaltsauflösung meiner Eltern war emotional nicht einfach – das Team von GlanzFaktor ist sehr einfühlsam und trotzdem effizient vorgegangen. Die Wohnung wurde besenrein übergeben."',
+    name: 'Petra Hoffmann',
+    role: 'Kundin, Haushaltsauflösung',
+  },
+  {
+    text: '"Unser Keller stand seit Jahren voll – nach einem Anruf bei GlanzFaktor war er innerhalb eines Tages komplett entrümpelt und fachgerecht entsorgt. Fairer Festpreis, keine Überraschungen."',
+    name: 'Thomas Wagner',
+    role: 'Kunde, Kellerentrümpelung',
+  },
 ];
-
-const STARS = ['★', '★', '★', '★', '★'];
 
 export default function Testimonials() {
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef);
 
   return (
-    <section
-      id="testimonials"
-      className="gf-testi-section"
-      ref={sectionRef}
-      style={{ overflow: 'hidden', paddingBottom: '80px', paddingTop: '40px' }}
-    >
-      <div className="w-layout-blockcontainer container w-container">
-        {/* Header */}
-        <div className="gf-testi-header reveal reveal-fade">
-          <div className="subtitle" style={{ justifyContent: 'center' }}>
-            <div className="subtitle-icon">
-              <img
-                src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68ada4d8c8e2e861698ff365_subtitle-star.svg"
-                loading="lazy" alt="star"
-              />
-            </div>
-            <div>Kundenstimmen</div>
-          </div>
-          <h2 className="section-title mg-0" style={{ textAlign: 'center', marginTop: '12px' }}>
+    <section id="testimonials" ref={sectionRef} className="overflow-hidden pb-20 pt-10">
+      <div className="shell">
+        <div className="reveal reveal-fade text-center">
+          <Eyebrow center>Kundenstimmen</Eyebrow>
+          <h2 className="mt-3 font-display text-3xl font-medium text-navy-800 sm:text-4xl">
             Was unsere Kunden sagen – und warum sie 100% zufrieden sind
           </h2>
-          <p style={{ textAlign: 'center', marginTop: '12px', fontSize: '16px', color: '#666' }}>
+          <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground">
             <strong>Kontaktieren Sie uns jetzt KOSTENLOS und erfahren Sie, warum über 50 Kunden GlanzFaktor vertrauen!</strong>
           </p>
         </div>
       </div>
 
-      {/* Infinite Scrolling Marquee Track */}
-      <div className="reveal reveal-scale gf-testi-marquee-wrapper" style={{ '--d': '0.15s' }}>
-        <div className="gf-testi-marquee-track">
+      {/* Infinite scrolling marquee — intentionally full-bleed */}
+      <div
+        className="reveal reveal-scale group relative mt-8 w-screen overflow-hidden py-5 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]"
+        style={{ '--d': '0.15s' }}
+      >
+        <div className="flex w-max animate-[testi-scroll_45s_linear_infinite] gap-7 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
           {[...slides, ...slides, ...slides].map((slide, i) => (
-            <div key={i} className="gf-testi-marquee-item">
-              <div className="gf-testi-card-override">
-                <div style={{ padding: '20px' }}>
-                  <div className="gf-testi-stars">
-                    {STARS.map((s, j) => <span key={j} className="gf-testi-star">{s}</span>)}
-                  </div>
-                  <p className="gf-testi-text">{slide.text}</p>
-                  <p className="gf-testi-name">{slide.name}</p>
-                  <p className="gf-testi-role">{slide.role}</p>
-                </div>
+            <Card
+              key={i}
+              className="relative flex w-[290px] shrink-0 flex-col justify-center overflow-hidden rounded-[20px] border-black/5 p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] sm:w-[360px] sm:p-8 lg:w-[480px] lg:p-10"
+            >
+              <Quote className="absolute right-6 top-4 h-24 w-24 text-muted/80" fill="currentColor" strokeWidth={0} />
+              <div className="relative mb-5 flex justify-center gap-1">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="h-4 w-4 text-gold" fill="currentColor" strokeWidth={0} />
+                ))}
               </div>
-            </div>
+              <p className="relative mb-7 text-[15px] font-medium italic leading-relaxed text-muted-foreground sm:text-base">
+                {slide.text}
+              </p>
+              <p className="relative font-display text-lg font-bold text-navy-900">{slide.name}</p>
+              <p className="relative text-xs font-semibold uppercase tracking-wide text-muted-foreground">{slide.role}</p>
+            </Card>
           ))}
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .gf-testi-marquee-wrapper {
-          width: 100vw;
-          position: relative;
-          left: 50%;
-          right: 50%;
-          margin-left: -50vw;
-          margin-right: -50vw;
-          overflow: hidden;
-          padding: 20px 0 60px 0;
-        }
-
-        /* Fading Edges on Left and Right */
-        .gf-testi-marquee-wrapper::before,
-        .gf-testi-marquee-wrapper::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          width: 15%;
-          height: 100%;
-          z-index: 2;
-          pointer-events: none;
-        }
-        .gf-testi-marquee-wrapper::before {
-          left: 0;
-          background: linear-gradient(to right, #f8f9fa, transparent);
-        }
-        .gf-testi-marquee-wrapper::after {
-          right: 0;
-          background: linear-gradient(to left, #f8f9fa, transparent);
-        }
-
-        .gf-testi-marquee-track {
-          display: flex;
-          gap: 30px;
-          width: max-content;
-          /* Animation speed: slower numbers = slower animation */
-          animation: scroll-left 45s linear infinite; 
-        }
-        
-        /* Pause on Hover! */
-        .gf-testi-marquee-wrapper:hover .gf-testi-marquee-track {
-          animation-play-state: paused;
-        }
-
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-33.333333% - 10px)); } 
-        }
-
-        .gf-testi-marquee-item {
-          width: 480px;
-          flex-shrink: 0;
-          display: flex;
-          height: 100%;
-          align-items: stretch;
-        }
-
-        /* Beautiful new Card adjustments specifically for the Marquee */
-        .gf-testi-card-override {
-          background: #fff;
-          border-radius: 20px;
-          padding: 40px;
-          margin: 0;
-          width: 100%;
-          text-align: center;
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-          border: 1px solid rgba(0,0,0,0.03);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gf-testi-card-override:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-        }
-
-        /* We restore the large quote icon styling specifically for these cards */
-        .gf-testi-card-override::before {
-          content: '\\201C';
-          position: absolute;
-          top: 10px; right: 30px;
-          font-size: 140px;
-          line-height: 1;
-          color: #f0f1f8;
-          font-family: Georgia, serif;
-          pointer-events: none;
-          user-select: none;
-        }
-
-        @media (max-width: 991px) {
-          .gf-testi-marquee-item {
-            width: 360px;
-          }
-          .gf-testi-marquee-track {
-            animation-duration: 38s;
-          }
-        }
-        @media (max-width: 767px) {
-          .gf-testi-marquee-item {
-            width: 290px;
-          }
-          .gf-testi-marquee-track {
-            animation-duration: 30s;
-            gap: 16px;
-          }
-          .gf-testi-card-override {
-             padding: 24px;
-          }
-          .gf-testi-card-override::before {
-            font-size: 90px;
-            top: 5px; right: 15px;
-          }
+        @keyframes testi-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(calc(-33.3333% - 10px)); }
         }
       ` }} />
     </section>

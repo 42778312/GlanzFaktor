@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "checkJs": false
+    "checkJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "exclude": [
-    "Assest/**/*"
+    "Assest/**/*",
+    "node_modules"
   ]
 }

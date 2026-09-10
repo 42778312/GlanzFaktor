@@ -1,50 +1,30 @@
 import Head from 'next/head';
-import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import HowItWorks from '../components/HowItWorks';
-import Services from '../components/Services';
+import Pillars from '../components/Pillars';
 import WhyUs from '../components/WhyUs';
 import MarqueeSection from '../components/MarqueeSection';
-import ContactForm from '../components/ContactForm';
 import Counter from '../components/Counter';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
-import EditMode from '../components/EditMode';
+import FinalCTA from '../components/FinalCTA';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>GlanzFaktor - Professionelle Gebäudereinigung am Bodensee | Konstanz</title>
+        <title>GlanzFaktor – Reinigung & Entrümpelung in Konstanz am Bodensee</title>
       </Head>
 
-      <div className="dark-bg">
-        <div className="white-bg">
-          <Navbar />
-          <Hero />
-          <HowItWorks />
-        </div>
-      </div>
-
-      <Services />
-
+      <Hero />
+      <Pillars />
+      <HowItWorks />
       <WhyUs />
-
       <MarqueeSection />
-
-      <ContactForm />
-
       <Counter />
-
       <Testimonials />
-
       <FAQ />
-
-      <Footer />
-
-      {/* Edit mode overlay – activated via ?edit=true */}
-      <EditMode />
+      <FinalCTA />
     </>
   );
 }

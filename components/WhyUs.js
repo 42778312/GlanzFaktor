@@ -1,30 +1,32 @@
 import { useRef } from 'react';
+import { SprayCan, Leaf, Zap, HandCoins, ArrowRight, Star } from 'lucide-react';
 import useScrollReveal from './useScrollReveal';
+import Eyebrow from './Eyebrow';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const expertCards = [
   {
-    icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c1522083736abab99630_9a2fc1f369b599ca6024417779f8cb0d_expert-icon-1.svg',
-    alt: 'Spray Bottle',
-    title: '★ Premium Tiefenreinigung mit Best-Garantie',
-    text: 'Mit modernster Reinigungstechnologie und jahrelanger Expertise entfernen wir selbst hartnäckigste Verschmutzungen – für ein gesundes und hygienisches Raumklima. KOSTENLOSE Nachbearbeitung, wenn Sie nicht 100% zufrieden sind!',
+    Icon: SprayCan,
+    title: 'Premium-Ergebnis mit Best-Garantie',
+    text: 'Mit modernster Ausrüstung und jahrelanger Expertise liefern wir bei Reinigung wie Entrümpelung ein Ergebnis, das überzeugt. KOSTENLOSE Nachbearbeitung, wenn Sie nicht 100% zufrieden sind!',
+    starred: true,
   },
   {
-    icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c44b9a7889acc6ab43f8_2542529454b91f55bedb49f2fb760f8a_expert-icon-2.svg',
-    alt: 'Flower',
-    title: 'Ökologisch & Sicher',
-    text: 'Wir setzen ausschließlich auf umweltzertifizierte Reinigungsmittel – für maximale Sicherheit von Mensch, Tier und Natur in der Bodenseeregion.',
+    Icon: Leaf,
+    title: 'Ökologisch & Fachgerecht',
+    text: 'Wir setzen auf umweltzertifizierte Reinigungsmittel und entsorgen entrümpelte Gegenstände fachgerecht – für maximale Sicherheit von Mensch, Tier und Natur in der Bodenseeregion.',
   },
   {
-    icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c4549178f92896224fcf_608355c0afe697f2f94c547f81660f4f_expert-icon-3.svg',
-    alt: 'Clock',
+    Icon: Zap,
     title: 'Blitzschnell & Präzise',
     text: 'Unser hochqualifiziertes Team arbeitet effizient und gründlich – Sie erhalten perfekte Ergebnisse in kürzester Zeit, ohne Kompromisse bei der Qualität.',
   },
   {
-    icon: 'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/6821c45db572661a0c79f76a_ad2a8554a1de10fcd249dee6f7d174f1_expert-icon-4.svg',
-    alt: 'Offering',
-    title: '★ Faire, transparente Preise — KOSTENLOS Angebot',
+    Icon: HandCoins,
+    title: 'Faire, transparente Preise — KOSTENLOS Angebot',
     text: 'Premium-Qualität zu fairen Konditionen – KEINE versteckten Kosten! Erhalten Sie jetzt ein KOSTENLOSES, unverbindliches Angebot. Nur erstklassiger Service, der sich für Sie auszahlt!',
+    starred: true,
   },
 ];
 
@@ -38,65 +40,49 @@ export default function WhyUs() {
   };
 
   return (
-    <section id="why-us" className="section-regular" ref={sectionRef}>
-      <div className="w-layout-blockcontainer container w-container">
-        <div className="w-layout-grid expert-grid">
+    <section id="why-us" ref={sectionRef} className="bg-background py-24">
+      <div className="shell grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        {/* Left column */}
+        <div className="reveal reveal-left">
+          <Eyebrow>Darum GlanzFaktor</Eyebrow>
+          <h2 className="mt-4 max-w-xl font-display text-3xl font-medium leading-tight text-navy-800 sm:text-4xl">
+            Warum über 50 Kunden am Bodensee uns vertrauen — und warum SIE es auch sollten
+          </h2>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Bei GlanzFaktor erhalten Sie mehr als nur Reinigung oder Entrümpelung – Sie
+            bekommen einen zuverlässigen Partner, der Ihre Immobilie mit Leidenschaft und
+            höchster Professionalität behandelt. <strong className="text-navy-800">KOSTENLOSE Erstberatung, kostenlose Besichtigung</strong> —
+            maßgeschneiderte Lösungen, modernste Ausrüstung und ein hochqualifiziertes Team
+            aus der Region garantieren Ihnen ein Ergebnis, das begeistert!
+          </p>
+          <Button
+            onClick={scrollToContact}
+            variant="outline"
+            className="mt-8 h-auto rounded-full border-navy-800 px-6 py-3 text-[15px] font-semibold text-navy-800 hover:bg-navy-800 hover:text-white"
+          >
+            KOSTENLOS kontaktieren!
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
 
-          {/* Left column — slides in from left */}
-          <div className="w-layout-vflex reveal reveal-left">
-            <div className="section-title-wrap">
-              <div className="subtitle align-left">
-                <div className="subtitle-icon">
-                  <img
-                    src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68ada4d8c8e2e861698ff365_subtitle-star.svg"
-                    loading="lazy" alt="star"
-                  />
-                </div>
-                <div>DARUM GLANZFAKTOR</div>
+        {/* Right: cards */}
+        <div className="grid gap-5 sm:grid-cols-2">
+          {expertCards.map(({ Icon, title, text, starred }, i) => (
+            <Card
+              key={title}
+              className="reveal reveal-right group rounded-2xl border-border p-7 shadow-none transition-all duration-300 hover:-translate-y-2 hover:border-transparent hover:shadow-xl"
+              style={{ '--d': `${i * 0.13}s` }}
+            >
+              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-muted text-navy-800 transition-colors duration-300 group-hover:bg-navy-800 group-hover:text-white">
+                <Icon className="h-6 w-6" strokeWidth={1.7} />
               </div>
-              <div className="max-width-800">
-                <h2 className="section-title mg-0">
-                  Warum über 50 Kunden am Bodensee uns vertrauen — und warum SIE es auch sollten
-                </h2>
-                <p style={{ marginTop: '20px', fontSize: '18px', lineHeight: '1.7', color: '#555' }}>
-                  Bei GlanzFaktor erhalten Sie mehr als nur eine Reinigung – Sie bekommen einen
-                  zuverlässigen Partner, der Ihre Immobilie mit Leidenschaft und höchster
-                  Professionalität behandelt. <strong>KOSTENLOSE Erstberatung, kostenlose Besichtigung</strong> — maßgeschneiderte Lösungen, modernste
-                  Ausrüstung und ein hochqualifiziertes Team aus der Region garantieren Ihnen kristallklare
-                  Sauberkeit, die begeistert!
-                </p>
-              </div>
-              <div className="w-layout-vflex mg-top-30">
-                <a
-                  href="#contact-form"
-                  onClick={scrollToContact}
-                  className="secondary-button w-inline-block"
-                >
-                  <div>KOSTENLOS kontaktieren!</div>
-                  <div className="button-icon">
-                    <img
-                      src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/67e50f402a56ac86b3ff7be6_arrow.svg"
-                      loading="lazy" alt="arrow"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: cards stagger from right */}
-          <div className="expert-card-wrap">
-            {expertCards.map((card, i) => (
-              <div key={i} className="expert-card reveal reveal-right" style={{ '--d': `${i * 0.13}s` }}>
-                <div className="expert-card-icon-wrap">
-                  <img src={card.icon} loading="lazy" alt={card.alt} className="expert-icon" />
-                </div>
-                <h3 className="expert-card-title">{card.title}</h3>
-                <p className="expert-card-text">{card.text}</p>
-              </div>
-            ))}
-          </div>
-
+              <h3 className="mb-2.5 flex items-start gap-1.5 font-display text-[17px] font-semibold leading-snug text-navy-900">
+                {starred && <Star className="mt-0.5 h-4 w-4 shrink-0 text-gold" fill="currentColor" strokeWidth={0} />}
+                {title}
+              </h3>
+              <p className="text-[14.5px] leading-relaxed text-muted-foreground">{text}</p>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

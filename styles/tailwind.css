@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn/ui theme tokens, mapped to the GlanzFaktor navy + teal palette
+   (see --gf-* tokens in globals.css for the source hex values) */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 229 35% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 229 35% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 229 35% 16%;
+
+    --primary: 176 85% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 229 35% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 225 22% 96%;
+    --muted-foreground: 228 13% 39%;
+
+    --accent: 225 22% 96%;
+    --accent-foreground: 229 35% 16%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 227 22% 92%;
+    --input: 227 22% 92%;
+    --ring: 176 85% 39%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 225 27% 9%;
+    --foreground: 0 0% 100%;
+
+    --card: 229 35% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 229 35% 16%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 176 85% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 229 35% 16%;
+
+    --muted: 229 19% 22%;
+    --muted-foreground: 229 12% 66%;
+
+    --accent: 229 19% 22%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 229 19% 26%;
+    --input: 229 19% 26%;
+    --ring: 176 85% 39%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* ── Shell: the constrained, centered content width every section
+   should sit inside so nothing stretches edge-to-edge on wide monitors ── */
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+}

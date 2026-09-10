@@ -9,6 +9,54 @@ html {
   scroll-behavior: smooth;
 }
 
+/* =====================================================
+   DESIGN TOKENS — the font variables next/font/google
+   generates (see lib/fonts.js) are consumed by Tailwind's
+   fontFamily config (tailwind.config.js) as font-display /
+   font-sans / font-label.
+   ===================================================== */
+:root {
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Open Sans', -apple-system, sans-serif;
+  --font-label: 'Instrument Sans', -apple-system, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* =====================================================
+   SCROLL-REVEAL ANIMATION SYSTEM — used throughout via useScrollReveal.js
+   ===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0s);
+}
+.reveal.reveal-left { transform: translateX(-52px); }
+.reveal.reveal-right { transform: translateX(52px); }
+.reveal.reveal-scale { transform: scale(0.92); }
+.reveal.reveal-fade { transform: none; }
+.reveal.revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .hero-word, .hiw-animate, .hero-sub-reveal, .hero-img-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ---- Page loader ---- */
 .page-loader {
   position: fixed;
@@ -32,7 +80,6 @@ html {
   pointer-events: none;
 }
 
-/* Wrapper that holds ring + logo together */
 .loader-center {
   position: relative;
   width: 300px;
@@ -42,7 +89,6 @@ html {
   justify-content: center;
 }
 
-/* Animated ring – fills the wrapper */
 .loader-ring {
   position: absolute;
   inset: 0;
@@ -60,7 +106,7 @@ html {
 
 .loader-ring__spin {
   stroke: rgba(255, 255, 255, 0.9);
-  stroke-dasharray: 339.3;       /* 2π × 54 */
+  stroke-dasharray: 339.3;
   stroke-dashoffset: 339.3;
   animation: loaderSpin 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
@@ -71,7 +117,6 @@ html {
   100% { stroke-dashoffset: 0;     opacity: 0; }
 }
 
-/* Logo centred inside ring */
 .loader-logo {
   width: 160px;
   height: 160px;
@@ -86,7 +131,6 @@ html {
   to   { opacity: 1; transform: scale(1);   }
 }
 
-/* Brand name */
 .loader-brand {
   color: rgba(255, 255, 255, 0.9);
   font-family: 'Georgia', 'Times New Roman', serif;
@@ -101,214 +145,8 @@ html {
   to   { opacity: 1; transform: translateY(0);    }
 }
 
-/* Hide Webflow badge & editor elements */
-.w-webflow-badge,
-.w-editor-bem-EditorStartButton_Shape,
-.w-editor-bem-EditorStartButton,
-.w-editor-bem-EditorOverlay,
-[class*="w-editor-bem-Editor"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* ---- Marquee ---- */
-@keyframes marqueeScroll {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.marquee-track {
-  display: flex;
-  overflow: hidden;
-  width: 100%;
-}
-
-.marquee-inner {
-  display: flex;
-  white-space: nowrap;
-  animation: marqueeScroll 18s linear infinite;
-}
-
-.marquee-inner:hover {
-  animation-play-state: paused;
-}
-
-/* ---- Testimonial slider ---- */
-.testimonial-slider-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.testimonial-slides {
-  display: flex;
-  transition: transform 0.4s ease;
-}
-
-.testimonial-slide {
-  flex: 0 0 100%;
-  width: 100%;
-}
-
-/* ---- FAQ accordion ---- */
-.faq-answer-wrap {
-  display: none;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.faq-answer-wrap.open {
-  display: block;
-}
-
-.faq-icon {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.faq-vertical-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: currentColor;
-  transform: translateX(-50%);
-  transition: transform 0.3s ease;
-}
-
-.faq-horizontal-line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: currentColor;
-  transform: translateY(-50%);
-}
-
-/* ---- Scroll animations ---- */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(48px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-.scroll-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.faq-wrap.open .faq-vertical-line {
-  transform: translateX(-50%) rotate(90deg);
-  opacity: 0;
-}
-
-.faq-question-wrap {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-/* ---- Mobile nav ---- */
-.nav-menu.open {
-  display: flex !important;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  padding: 20px;
-  z-index: 1000;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* ---- Edit mode animations ---- */
+/* ---- Edit mode notification slide-in (components/EditMode.js) ---- */
 @keyframes slideUp {
   from { transform: translateX(-50%) translateY(100px); opacity: 0; }
   to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
-}
-
-@keyframes slideDown {
-  from { transform: translateX(-50%) translateY(0);    opacity: 1; }
-  to   { transform: translateX(-50%) translateY(100px); opacity: 0; }
-}
-
-/* ---- Counter animation ---- */
-@keyframes countUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0);    }
-}
-
-/* ---- Fade-in utility ---- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-/* ---- Editable image wrapper (edit mode) ---- */
-.editable-image-wrapper {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.edit-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(247, 147, 30, 0.9);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.editable-image-wrapper:hover .edit-overlay {
-  opacity: 1;
-}
-
-/* ---- Service cards hover ---- */
-.home-service-card {
-  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              background-color 0.32s ease;
-  cursor: default;
-}
-
-.home-service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
-  background-color: #fff;
-}
-
-.home-service-card:hover .home-service-icon-wrap {
-  transform: scale(1.12);
-  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.home-service-icon-wrap {
-  transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.home-service-card:hover .card-title {
-  color: #5b3ee8;
-  transition: color 0.25s ease;
-}
-
-.card-title {
-  transition: color 0.25s ease;
 }

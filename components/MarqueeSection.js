@@ -1,22 +1,30 @@
-const starSrc =
-  'https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68b2db94db293a604e17d753_d1875dc52c96cb2db95ae96f2db83f05_marquee-star.svg';
+import { Sparkle } from 'lucide-react';
 
-const marqueeItems = ['KOSTENLOS kontaktieren', 'Professionelle Reinigung', 'KOSTENLOS kontaktieren', 'Best Service Garantie', 'KOSTENLOS kontaktieren', 'Polieren', 'KOSTENLOS kontaktieren', 'Unverbindliches Angebot'];
+const marqueeItems = [
+  'KOSTENLOS kontaktieren',
+  'Professionelle Reinigung',
+  'KOSTENLOS kontaktieren',
+  'Fachgerechte Entrümpelung',
+  'KOSTENLOS kontaktieren',
+  'Best Service Garantie',
+  'KOSTENLOS kontaktieren',
+  'Besenreine Übergabe',
+  'KOSTENLOS kontaktieren',
+  'Unverbindliches Angebot',
+];
 
 export default function MarqueeSection() {
   return (
-    <section className="marquee-section">
-      <div className="marquee-track">
-        <div className="marquee-inner">
-          {[...marqueeItems, ...marqueeItems].map((word, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '20px', marginRight: '20px' }}>
-              <span className="marquee-text" style={{ display: 'inline-block', margin: 0 }}>{word}</span>
-              <span className="marquee-star-wrap" style={{ display: 'inline-block' }}>
-                <img src={starSrc} loading="lazy" alt="Dark star" />
-              </span>
+    <section className="overflow-hidden bg-background py-16">
+      <div className="flex w-max animate-marquee motion-reduce:animate-none">
+        {[...marqueeItems, ...marqueeItems].map((word, i) => (
+          <span key={i} className="mr-8 inline-flex items-center gap-8">
+            <span className="whitespace-nowrap font-display text-[clamp(2.2rem,5vw,4.5rem)] font-normal leading-none text-border">
+              {word}
             </span>
-          ))}
-        </div>
+            <Sparkle className="h-8 w-8 shrink-0 text-border" fill="currentColor" strokeWidth={0} />
+          </span>
+        ))}
       </div>
     </section>
   );

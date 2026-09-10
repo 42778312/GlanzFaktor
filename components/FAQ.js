@@ -1,91 +1,75 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import useScrollReveal from './useScrollReveal';
+import Eyebrow from './Eyebrow';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const faqs = [
   {
+    topic: 'general',
     question: 'Was macht GlanzFaktor zur ersten Wahl am Bodensee? (KOSTENLOSE Beratung!)',
     answer:
-      'Wir kombinieren jahrelange Erfahrung mit modernster Reinigungstechnologie und ökologischen Produkten. Unser hochqualifiziertes zertifiziertes Team garantiert beste Qualität bei jedem Auftrag – von der Privatwohnung bis zum Gewerbeobjekt in Konstanz und Umgebung. KOSTENLOSE Erstberatung für alle Neukunden! Kontaktieren Sie uns jetzt.',
+      'Wir kombinieren jahrelange Erfahrung mit modernster Ausrüstung bei Reinigung und Entrümpelung. Unser hochqualifiziertes Team garantiert beste Qualität bei jedem Auftrag – von der Privatwohnung bis zum Gewerbeobjekt in Konstanz und Umgebung. KOSTENLOSE Erstberatung für alle Neukunden! Kontaktieren Sie uns jetzt.',
   },
   {
+    topic: 'reinigung',
     question: 'Warum sind Ihre Reinigungsprodukte besonders?',
     answer:
       'Wir verwenden ausschließlich umweltzertifizierte und biologisch abbaubare Reinigungsmittel – perfekt für die sensible Bodenseeregion. Sie sind zu 100% sicher für Kinder, Haustiere und Allergiker und dennoch hochwirksam gegen hartnäckige Verschmutzungen.',
   },
   {
+    topic: 'general',
     question: 'Wie schnell kann ich einen KOSTENLOSEN Termin bekommen?',
     answer:
       'Schneller als Sie denken! In der Regel können wir Ihnen innerhalb von 24-48 Stunden einen KOSTENLOSEN Besichtigungstermin anbieten! Kontaktieren Sie uns telefonisch, per WhatsApp oder über unser KOSTENLOSES Kontaktformular – wir finden gemeinsam den perfekten Zeitpunkt für Ihr kostenloses Angebot.',
   },
   {
+    topic: 'general',
     question: 'Bieten Sie eine Best-Zufriedenheitsgarantie?',
     answer:
       'Ja, zu 100%! Wir stehen zu 100% hinter unserer Arbeit und Ihrem Glück. Sollten Sie mit einem Ergebnis nicht vollständig zufrieden sein, kommen wir KOSTENLOS zurück und bessern nach – bis Sie begeistert sind! Das ist unser verbindliches GlanzFaktor-Best-Service-Versprechen!',
   },
+  {
+    topic: 'entruempelung',
+    question: 'Was kostet eine Entrümpelung?',
+    answer:
+      'Das hängt von Fläche, Menge und Zugänglichkeit ab. Deshalb besichtigen wir Ihr Objekt KOSTENLOS und erstellen anschließend ein transparentes Festpreisangebot – ohne versteckte Kosten und ohne böse Überraschungen am Ende.',
+  },
+  {
+    topic: 'entruempelung',
+    question: 'Was passiert mit den entrümpelten Gegenständen?',
+    answer:
+      'Wir trennen fachgerecht: Verwertbares wird nach Möglichkeit weitergegeben oder recycelt, der Rest wird ordnungsgemäß entsorgt. Wertanrechnungen besprechen wir transparent bereits bei der Besichtigung.',
+  },
 ];
 
-const PlusIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
-export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null);
+export default function FAQ({ topics = ['general', 'reinigung', 'entruempelung'] }) {
   const sectionRef = useRef(null);
   useScrollReveal(sectionRef);
 
-  const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
+  const items = faqs.filter((f) => topics.includes(f.topic));
 
   return (
-    <section id="faq" className="gf-faq-section section-regular" ref={sectionRef}>
-      <div className="w-layout-blockcontainer container w-container">
-
-        {/* Header */}
-        <div className="section-title-wrap">
-          <div className="align-center reveal reveal-fade">
-            <div className="subtitle">
-              <div className="subtitle-icon">
-                <img
-                  src="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68ada4d8c8e2e861698ff365_subtitle-star.svg"
-                  loading="lazy" alt="star"
-                />
-              </div>
-              <div>FAQ</div>
-            </div>
-            <div className="inner-container-500">
-              <h2 className="section-title mg-0">Haben Sie Fragen? Wir haben die Antworten!</h2>
-            </div>
-          </div>
+    <section id="faq" ref={sectionRef} className="bg-background py-24">
+      <div className="shell">
+        <div className="reveal reveal-fade mx-auto max-w-xl text-center">
+          <Eyebrow center>FAQ</Eyebrow>
+          <h2 className="mt-3 font-display text-3xl font-medium text-navy-800 sm:text-4xl">
+            Haben Sie Fragen? Wir haben die Antworten!
+          </h2>
         </div>
 
-        {/* Accordion */}
-        <div className="gf-faq-area">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="gf-faq-item reveal"
-              style={{ '--d': `${i * 0.1}s` }}
-            >
-              <div
-                className={`gf-faq-q${openIndex === i ? ' open' : ''}`}
-                onClick={() => toggle(i)}
-                role="button"
-                aria-expanded={openIndex === i}
-              >
-                <span>{faq.question}</span>
-                <span className="gf-faq-icon">
-                  <PlusIcon />
-                </span>
-              </div>
-              <div className={`gf-faq-body${openIndex === i ? ' open' : ''}`}>
-                <p className="gf-faq-answer">{faq.answer}</p>
-              </div>
-            </div>
+        <Accordion type="single" collapsible className="reveal mx-auto mt-14 max-w-3xl">
+          {items.map((faq, i) => (
+            <AccordionItem key={faq.question} value={`item-${i}`} className="border-border">
+              <AccordionTrigger className="py-5 text-left font-display text-[17px] font-semibold text-navy-800 hover:no-underline data-[state=open]:text-teal-dark">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 text-[15.5px] leading-relaxed text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </div>
-
+        </Accordion>
       </div>
     </section>
   );

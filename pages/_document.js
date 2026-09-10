@@ -2,57 +2,35 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html lang="de" className="w-mod-js">
+    <Html lang="de">
       <Head>
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="GlanzFaktor: Ihr Experte für professionelle Gebäudereinigung in Konstanz und der Bodenseeregion. Nachhaltig, zuverlässig und mit Zufriedenheitsgarantie! ✓ Wohn- & Gewerbereinigung ✓ Ökologische Produkte ✓ Zertifiziertes Team"
+          content="GlanzFaktor: Reinigung & Entrümpelung aus einer Hand in Konstanz und der Bodenseeregion. Gebäudereinigung, Büroreinigung, Grundreinigung sowie Wohnungsentrümpelung, Haushaltsauflösungen und Kellerentrümpelung – zuverlässig, transparent und mit kostenlosem Angebot."
         />
-        <meta property="og:title" content="GlanzFaktor | Professionelle Gebäudereinigung Bodensee" />
+        <meta property="og:title" content="GlanzFaktor | Reinigung & Entrümpelung Bodensee" />
         <meta
           property="og:description"
-          content="Ihr Partner für erstklassige Gebäudereinigung in Konstanz und am Bodensee. Nachhaltig, professionell und mit 98% Weiterempfehlungsrate!"
+          content="Ihr Partner für professionelle Reinigung und Entrümpelung in Konstanz und am Bodensee. Ein Anruf, zwei Leistungen, ein zuverlässiges Team."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport" />
 
-        {/* Webflow CSS */}
-        <link
-          href="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/css/cleanupflow-template.webflow.shared.87b3a847d.css"
-          rel="stylesheet"
-          type="text/css"
-        />
-
-        {/* Custom overrides */}
-        <link href="/Assest/custom-styles.css" rel="stylesheet" type="text/css" />
-
-        {/* Leaflet CSS */}
+        {/* Leaflet CSS — still used by the service-area map */}
         <link
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           rel="stylesheet"
           crossOrigin=""
         />
 
-        {/* Google Fonts */}
-        <link href="https://fonts.googleapis.com" rel="preconnect" />
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Google Fonts (Fraunces / Open Sans / Instrument Sans) are
+            loaded via next/font/google in lib/fonts.js — self-hosted,
+            no render-blocking request needed here. */}
 
-        {/* Favicon */}
-        <link
-          href="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68e0a0581d5a9819d9947474_CleanupFlow-Favicon.png"
-          rel="shortcut icon"
-          type="image/x-icon"
-        />
-        <link
-          href="https://cdn.prod.website-files.com/67e50220a4446ac664873e26/68e0a0630b7b84e9f4b24dae_CleanupFlow-Webclip.png"
-          rel="apple-touch-icon"
-        />
+        {/* Favicon — the GlanzFaktor mark itself */}
+        <link href="/Assest/log.png" rel="icon" type="image/png" />
+        <link href="/Assest/log.png" rel="apple-touch-icon" />
       </Head>
       <body>
         <Main />
